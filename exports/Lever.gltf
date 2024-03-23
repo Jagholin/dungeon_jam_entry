@@ -15,15 +15,15 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Bolts"
+			"name":"Bolts-col"
 		},
 		{
 			"mesh":1,
-			"name":"Case"
+			"name":"Case-col"
 		},
 		{
 			"mesh":2,
-			"name":"Handle"
+			"name":"Handle-col"
 		},
 		{
 			"children":[
