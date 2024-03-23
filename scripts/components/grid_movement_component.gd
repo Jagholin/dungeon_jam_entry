@@ -35,7 +35,7 @@ var movement_state := IDLE_STATE:
 		if movement_state == newState:
 			return
 		movement_state = newState
-		print("applied state: ", newState)
+		# print("applied state: ", newState)
 
 var movement_listeners: Array[MovementListenerComponent] = []
 

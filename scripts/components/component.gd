@@ -2,12 +2,17 @@ class_name Component
 extends Node3D
 
 var target: Node3D
+var system: BaseSystem
 const COMPONENT_COMPONENT_NAME := &"Component"
 
 func _notification(what):
 	if what == NOTIFICATION_PARENTED:
 		target = get_parent()
-	# Enable something that goes somewhere different
+	elif what == NOTIFICATION_UNPARENTED:
+		target = null
+	elif what == NOTIFICATION_EXIT_TREE:
+		if system:
+			system.unregister_component(self)
 
 func initialize():
 	pass

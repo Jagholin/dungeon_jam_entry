@@ -12,6 +12,7 @@ signal player_collision
 
 enum MovementEffect {NONE, PREVENT_MOVEMENT}
 func on_movement_initiated(dest: Vector3i) -> MovementEffect:
+	print("movement initiated")
 	if dest != grid_bound.grid_coordinate:
 		return MovementEffect.NONE
 	assert(target.has_method(&"on_movement_initiated"))

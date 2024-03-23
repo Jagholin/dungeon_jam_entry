@@ -1,0 +1,2 @@
+class_name PlayerTrackerSystem
+extends BaseSystem

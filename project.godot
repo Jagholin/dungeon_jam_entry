@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Globals="*res://scripts/Globals.gd"
 Obstacles="*res://scripts/systems/obstacle_system.gd"
 Grids="*res://scripts/systems/gridsystem.gd"
+PlayerTrackers="*res://scripts/systems/player_tracker_system.gd"
 
 [input]
 

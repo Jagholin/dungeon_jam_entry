@@ -17,7 +17,11 @@ var grid_coordinate: Vector3i:
 
 @export var on_the_wall: bool = true
 
+func _ready():
+	register_component()
+
 func register_component():
+	system = Grids
 	Grids.register_component(self)
 
 func initialize():
