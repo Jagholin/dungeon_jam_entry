@@ -1,6 +1,9 @@
 class_name Door
 extends Node3D
 
+@export var opens_when_clicked: bool = true
+@export var closes_automatically: bool = true
+@export_group("Internal")
 @export var grid_bound: GridBoundComponent
 @export var player_tracker: PlayerTrackerComponent
 @export var animation_tree: AnimationTree
@@ -21,7 +24,8 @@ func door_has_opened():
 	is_open = true
 	is_transitioning = false
 	close_timer.wait_time = wait_close_interval
-	close_timer.start()
+	if closes_automatically:
+		close_timer.start()
 
 func door_is_closing():
 	is_open = false
@@ -38,9 +42,17 @@ func attempt_close_door():
 		close_timer.wait_time = wait_close_hurry_interval
 		close_timer.start()
 
+func open_door():
+	if not is_open and not is_transitioning:
+		animation_tree["parameters/conditions/open"] = true
+
+func close_door():
+	animation_tree["parameters/conditions/open"] = false
+
 func _on_static_body_3d_input_event(_camera, event, _position, _normal, _shape_idx):
 	if not player_tracker.player_is_close:
 		return
-	if not is_open and not is_transitioning and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+	if opens_when_clicked and \
+		event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		# initiate door opening
-		animation_tree["parameters/conditions/open"] = true
+		open_door()
