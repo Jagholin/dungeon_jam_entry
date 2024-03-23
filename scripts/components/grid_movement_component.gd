@@ -93,6 +93,7 @@ func apply_cooldown():
 	t.tween_callback(func(): movement_state = IDLE_STATE)
 
 func _ready():
+	register_component()
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 
 func _on_animation_player_animation_finished(anim_name):

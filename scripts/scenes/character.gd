@@ -27,9 +27,6 @@ var command_queue: Array[MovementCommand] = []
 const KEY_ITEM_NAME := "KEY"
 var inventory = []
 
-func _ready():
-	grid_movement.register_component()
-
 func coord_to_position(c: Vector3i) -> Vector3:
 	return Vector3(c.x * 2 + 1.0, position.y, c.z * 2 + 1.0)
 	

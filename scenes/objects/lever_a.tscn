@@ -1,0 +1,164 @@
+[gd_scene load_steps=17 format=3 uid="uid://cdvpamn00rjkm"]
+
+[ext_resource type="PackedScene" uid="uid://gowm8f5muqoq" path="res://exports/Lever.gltf" id="1_plkcy"]
+[ext_resource type="Script" path="res://scripts/components/player_tracker.gd" id="2_njqtx"]
+[ext_resource type="Script" path="res://scripts/scenes/lever_a.gd" id="2_wlf4l"]
+[ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="3_byapx"]
+
+[sub_resource type="Animation" id="Animation_x555n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lever/Handle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.217708, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1i2tw"]
+_data = {
+"RESET": SubResource("Animation_x555n")
+}
+
+[sub_resource type="Animation" id="Animation_d2o1s"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lever/Handle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.225429, 0), Vector3(0, 0.217708, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"switching_off"
+}, {
+"args": [],
+"method": &"has_switched_off"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_qb50f"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lever/Handle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.217708, 0), Vector3(0, -0.225429, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"switching_on"
+}, {
+"args": [],
+"method": &"has_switched_on"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_82u4m"]
+_data = {
+"switch_off": SubResource("Animation_d2o1s"),
+"switch_on": SubResource("Animation_qb50f")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e5nvw"]
+animation = &"lever_movements/switch_off"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r8oif"]
+animation = &"lever_movements/switch_on"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ham2"]
+advance_mode = 2
+advance_condition = &"off"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0ncrb"]
+advance_mode = 2
+advance_condition = &"on"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8asur"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"on"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uuqw8"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"off"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_e6oy1"]
+states/lever_movements_switch_off/node = SubResource("AnimationNodeAnimation_e5nvw")
+states/lever_movements_switch_off/position = Vector2(514, 50)
+states/lever_movements_switch_on/node = SubResource("AnimationNodeAnimation_r8oif")
+states/lever_movements_switch_on/position = Vector2(514, 162)
+transitions = ["Start", "lever_movements_switch_off", SubResource("AnimationNodeStateMachineTransition_2ham2"), "Start", "lever_movements_switch_on", SubResource("AnimationNodeStateMachineTransition_0ncrb"), "lever_movements_switch_off", "lever_movements_switch_on", SubResource("AnimationNodeStateMachineTransition_8asur"), "lever_movements_switch_on", "lever_movements_switch_off", SubResource("AnimationNodeStateMachineTransition_uuqw8")]
+
+[node name="Lever2" node_paths=PackedStringArray("player_tracker", "animation_player", "animation_tree") instance=ExtResource("1_plkcy")]
+script = ExtResource("2_wlf4l")
+player_tracker = NodePath("PlayerTrackerComponent")
+animation_player = NodePath("AnimationPlayer")
+animation_tree = NodePath("AnimationTree")
+
+[node name="Lever" parent="." index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.374943, -0.0993091)
+
+[node name="Handle" parent="Lever" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.217708, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_1i2tw"),
+"lever_movements": SubResource("AnimationLibrary_82u4m")
+}
+speed_scale = 2.0
+
+[node name="PlayerTrackerComponent" type="Node3D" parent="." index="2" node_paths=PackedStringArray("grid_bound")]
+script = ExtResource("2_njqtx")
+grid_bound = NodePath("../GridBoundComponent")
+
+[node name="GridBoundComponent" type="Node3D" parent="." index="3"]
+script = ExtResource("3_byapx")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_1i2tw"),
+"lever_movements": SubResource("AnimationLibrary_82u4m")
+}
+tree_root = SubResource("AnimationNodeStateMachine_e6oy1")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/off = false
+parameters/conditions/on = false
+
+[connection signal="input_event" from="Lever/Case/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="input_event" from="Lever/Handle/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
