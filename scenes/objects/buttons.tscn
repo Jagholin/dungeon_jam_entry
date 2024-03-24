@@ -5,10 +5,12 @@
 [ext_resource type="Script" path="res://scripts/components/player_tracker.gd" id="3_wmr88"]
 [ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="4_4orxp"]
 
-[node name="buttons" node_paths=PackedStringArray("player_tracker", "button_meshes") instance=ExtResource("1_cxefr")]
+[node name="buttons" node_paths=PackedStringArray("player_tracker", "button_meshes", "highlight_spotlight") instance=ExtResource("1_cxefr")]
 script = ExtResource("2_n0emq")
+highlight_color = Color(0.985063, 0.367599, 0.496996, 1)
 player_tracker = NodePath("PlayerTrackerComponent")
 button_meshes = [NodePath("button_0"), NodePath("button_1"), NodePath("button_2"), NodePath("button_3"), NodePath("button_4"), NodePath("button_5"), NodePath("button_6"), NodePath("button_7"), NodePath("button_8"), NodePath("button_9")]
+highlight_spotlight = NodePath("SpotLight3D")
 
 [node name="button_2" parent="." index="1"]
 visible = false
@@ -44,3 +46,12 @@ grid_bound = NodePath("../GridBoundComponent")
 
 [node name="GridBoundComponent" type="Node3D" parent="." index="11"]
 script = ExtResource("4_4orxp")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="12"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.0917978, -0.971504)
+light_color = Color(0.984314, 0.368627, 0.498039, 1)
+light_energy = 0.0
+spot_range = 3.12524
+spot_attenuation = 0.68302
+spot_angle = 28.521
+spot_angle_attenuation = 0.594603
