@@ -78,9 +78,10 @@ states/open_doors/node = SubResource("AnimationNodeAnimation_ifjrl")
 states/open_doors/position = Vector2(510, 58)
 transitions = ["Start", "open_doors", SubResource("AnimationNodeStateMachineTransition_yla8s"), "Start", "close_doors", SubResource("AnimationNodeStateMachineTransition_hymnk"), "open_doors", "close_doors", SubResource("AnimationNodeStateMachineTransition_h155y"), "close_doors", "open_doors", SubResource("AnimationNodeStateMachineTransition_w0mxl")]
 
-[node name="trapdoor" node_paths=PackedStringArray("animation_tree") instance=ExtResource("1_7644u")]
+[node name="trapdoor" node_paths=PackedStringArray("animation_tree", "player_tracker") instance=ExtResource("1_7644u")]
 script = ExtResource("2_wulbb")
 animation_tree = NodePath("AnimationTree")
+player_tracker = NodePath("PlayerTrackerComponent")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/1/rotation = Quaternion(9.9748e-08, -9.9748e-08, 0.707107, 0.707107)
