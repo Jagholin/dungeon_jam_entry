@@ -1,5 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccvwibyjx4l30"]
+[gd_scene load_steps=3 format=3 uid="uid://ccvwibyjx4l30"]
 
 [ext_resource type="PackedScene" uid="uid://tlsy5hqocy6t" path="res://exports/tiles.gltf" id="1_c2goh"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ory7"]
+normal_scale = 0.28
+
 [node name="tiles" instance=ExtResource("1_c2goh")]
+
+[node name="wall01" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_7ory7")
