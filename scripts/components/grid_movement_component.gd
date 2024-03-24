@@ -137,6 +137,12 @@ func _move_to_destination(dest: Vector3i):
 	new_coordinates = dest
 	apply_coordinates()
 
+func teleport_to(dest: Vector3i, dir: Vector3i):
+	grid_coordinate = dest
+	grid_direction = dir
+	target.position = target.coord_to_position(dest)
+	target.rotation = target.dir_to_rotation(dir)
+
 func move_forward():
 	var dest := grid_coordinate + grid_direction
 	_move_to_destination(dest)

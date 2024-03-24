@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://caq0aouuikchc"]
+[gd_scene load_steps=10 format=3 uid="uid://caq0aouuikchc"]
 
 [ext_resource type="Script" path="res://scripts/scenes/game_level.gd" id="1_tptln"]
 [ext_resource type="MeshLibrary" uid="uid://c1pw1i8o83p8k" path="res://resources/mesh_libraries/tiles.tres" id="2_pbwvx"]
 [ext_resource type="PackedScene" uid="uid://bi0nvp2yl34h5" path="res://scenes/objects/character.tscn" id="3_u5ams"]
 [ext_resource type="PackedScene" uid="uid://dfgfqed8n6qha" path="res://scenes/objects/door.tscn" id="4_n3ri6"]
 [ext_resource type="PackedScene" uid="uid://cdvpamn00rjkm" path="res://scenes/objects/lever_a.tscn" id="5_j1lr1"]
+[ext_resource type="PackedScene" uid="uid://ceoodhb2ic38g" path="res://scenes/objects/teleporter.tscn" id="6_0n774"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_es45i"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -48,3 +49,8 @@ switching_speed = 2.0
 
 [node name="Lever3" parent="." instance=ExtResource("5_j1lr1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 4)
+
+[node name="Teleporter" parent="." instance=ExtResource("6_0n774")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15, 1, 1)
+
+[connection signal="switched_on" from="Lever2" to="Teleporter" method="activate"]

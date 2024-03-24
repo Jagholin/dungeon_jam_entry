@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceoodhb2ic38g"]
+
+[ext_resource type="Script" path="res://scripts/scenes/teleporter.gd" id="1_lk6dw"]
+[ext_resource type="Script" path="res://scripts/components/grid_directional.gd" id="2_a3rsp"]
+[ext_resource type="PackedScene" uid="uid://ccnuoxs23ntro" path="res://scenes/objects/marker3d.tscn" id="3_e7jfl"]
+
+[node name="Teleporter" type="Node3D" node_paths=PackedStringArray("grid_component")]
+script = ExtResource("1_lk6dw")
+grid_component = NodePath("GridDirectionalComponent")
+
+[node name="GridDirectionalComponent" type="Node3D" parent="."]
+script = ExtResource("2_a3rsp")
+on_the_wall = false
+
+[node name="Marker3d" parent="." instance=ExtResource("3_e7jfl")]
