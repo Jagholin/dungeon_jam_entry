@@ -167,6 +167,3 @@ func approach(pos: Vector3i) -> int:
 		push_error("This cant happen lol")
 
 	return MOVING
-
-func rotate_towards(pos: Vector3i) -> void:
-	
