@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb3vsk6l10w6i"]
+
+[ext_resource type="PackedScene" uid="uid://bed1bjrscq4bc" path="res://exports/trapdoor.gltf" id="1_7644u"]
+
+[node name="trapdoor" instance=ExtResource("1_7644u")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/rotation = Quaternion(9.9748e-08, -9.9748e-08, 0.707107, 0.707107)
+bones/2/rotation = Quaternion(0.5, 0.5, -0.5, 0.5)
