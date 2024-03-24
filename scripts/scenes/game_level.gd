@@ -25,3 +25,7 @@ func is_a_wall(c: Vector3i) -> bool:
 func map_global_to_gridcoord(c: Vector3) -> Vector3i:
 	var localGridTestPoint := grid_map.to_local(c)
 	return grid_map.local_to_map(localGridTestPoint)
+
+
+func _on_buttons_pressed(value):
+	print("You pressed the button with value, ", value)

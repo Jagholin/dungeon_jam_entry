@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://dya78d0ij4vx2"]
+
+[ext_resource type="PackedScene" uid="uid://4n3xtkidkvtr" path="res://exports/buttons.gltf" id="1_cxefr"]
+[ext_resource type="Script" path="res://scripts/scenes/buttons.gd" id="2_n0emq"]
+[ext_resource type="Script" path="res://scripts/components/player_tracker.gd" id="3_wmr88"]
+[ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="4_4orxp"]
+
+[node name="buttons" node_paths=PackedStringArray("player_tracker", "button_meshes") instance=ExtResource("1_cxefr")]
+script = ExtResource("2_n0emq")
+player_tracker = NodePath("PlayerTrackerComponent")
+button_meshes = [NodePath("button_0"), NodePath("button_1"), NodePath("button_2"), NodePath("button_3"), NodePath("button_4"), NodePath("button_5"), NodePath("button_6"), NodePath("button_7"), NodePath("button_8"), NodePath("button_9")]
+
+[node name="button_2" parent="." index="1"]
+visible = false
+
+[node name="button_3" parent="." index="2"]
+visible = false
+
+[node name="button_4" parent="." index="3"]
+visible = false
+
+[node name="button_5" parent="." index="4"]
+visible = false
+
+[node name="button_6" parent="." index="5"]
+visible = false
+
+[node name="button_7" parent="." index="6"]
+visible = false
+
+[node name="button_8" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 0.999951, -0.00989586, 0, 0.00989586, 0.999951, -2.57149, 0, 0)
+visible = false
+
+[node name="button_9" parent="." index="8"]
+visible = false
+
+[node name="button_0" parent="." index="9"]
+visible = false
+
+[node name="PlayerTrackerComponent" type="Node3D" parent="." index="10" node_paths=PackedStringArray("grid_bound")]
+script = ExtResource("3_wmr88")
+grid_bound = NodePath("../GridBoundComponent")
+
+[node name="GridBoundComponent" type="Node3D" parent="." index="11"]
+script = ExtResource("4_4orxp")
