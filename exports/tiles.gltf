@@ -3,41 +3,72 @@
 		"generator":"Khronos glTF Blender I/O v4.0.44",
 		"version":"2.0"
 	},
+	"extensionsUsed":[
+		"KHR_materials_specular",
+		"KHR_materials_ior"
+	],
 	"scene":0,
 	"scenes":[
 		{
 			"name":"Scene",
 			"nodes":[
 				0,
-				1
+				1,
+				2,
+				3
 			]
 		}
 	],
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"floor-col"
+			"name":"floor01-col"
 		},
 		{
 			"mesh":1,
-			"name":"wall-col",
+			"name":"wall01-col",
 			"translation":[
 				3,
 				0,
 				0
+			]
+		},
+		{
+			"mesh":2,
+			"name":"wall02-col",
+			"translation":[
+				3,
+				0,
+				-3
+			]
+		},
+		{
+			"mesh":3,
+			"name":"floor02-col",
+			"translation":[
+				0,
+				0,
+				-3
 			]
 		}
 	],
 	"materials":[
 		{
 			"doubleSided":true,
-			"name":"Material.001",
+			"extensions":{
+				"KHR_materials_specular":{
+					"specularFactor":0
+				},
+				"KHR_materials_ior":{
+					"ior":1.4500000476837158
+				}
+			},
+			"name":"Dungeon_Atlas",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":0
 				},
-				"metallicFactor":0,
-				"roughnessFactor":0.5
+				"metallicFactor":0
 			}
 		}
 	],
@@ -57,7 +88,7 @@
 			]
 		},
 		{
-			"name":"Plane.001",
+			"name":"Plane.013",
 			"primitives":[
 				{
 					"attributes":{
@@ -66,6 +97,34 @@
 						"TEXCOORD_0":6
 					},
 					"indices":7,
+					"material":0
+				}
+			]
+		},
+		{
+			"name":"Plane.016",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":8,
+						"NORMAL":9,
+						"TEXCOORD_0":10
+					},
+					"indices":7,
+					"material":0
+				}
+			]
+		},
+		{
+			"name":"Plane.017",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":11,
+						"NORMAL":12,
+						"TEXCOORD_0":13
+					},
+					"indices":3,
 					"material":0
 				}
 			]
@@ -80,8 +139,8 @@
 	"images":[
 		{
 			"mimeType":"image/png",
-			"name":"TCom_Wall_Stone3_2x2_512_albedo",
-			"uri":"textures/TCom_Wall_Stone3_2x2_512_albedo.png"
+			"name":"Dungeon_Atlas_Albedo",
+			"uri":"Dungeon_Atlas_Albedo.png"
 		}
 	],
 	"accessors":[
@@ -152,6 +211,62 @@
 			"componentType":5123,
 			"count":36,
 			"type":"SCALAR"
+		},
+		{
+			"bufferView":8,
+			"componentType":5126,
+			"count":24,
+			"max":[
+				1,
+				2,
+				1
+			],
+			"min":[
+				-1,
+				0,
+				-1
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":9,
+			"componentType":5126,
+			"count":24,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":10,
+			"componentType":5126,
+			"count":24,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":11,
+			"componentType":5126,
+			"count":4,
+			"max":[
+				1,
+				0,
+				1
+			],
+			"min":[
+				-1,
+				0,
+				-1
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":12,
+			"componentType":5126,
+			"count":4,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":13,
+			"componentType":5126,
+			"count":4,
+			"type":"VEC2"
 		}
 	],
 	"bufferViews":[
@@ -202,17 +317,53 @@
 			"byteLength":72,
 			"byteOffset":908,
 			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":288,
+			"byteOffset":980,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":288,
+			"byteOffset":1268,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":192,
+			"byteOffset":1556,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":48,
+			"byteOffset":1748,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":48,
+			"byteOffset":1796,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":32,
+			"byteOffset":1844,
+			"target":34962
 		}
 	],
 	"samplers":[
 		{
-			"magFilter":9729,
-			"minFilter":9987
+			"magFilter":9728,
+			"minFilter":9984
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":980,
+			"byteLength":1876,
 			"uri":"tiles.bin"
 		}
 	]

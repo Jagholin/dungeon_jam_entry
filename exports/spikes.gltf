@@ -3,6 +3,10 @@
 		"generator":"Khronos glTF Blender I/O v4.0.44",
 		"version":"2.0"
 	},
+	"extensionsUsed":[
+		"KHR_materials_specular",
+		"KHR_materials_ior"
+	],
 	"scene":0,
 	"scenes":[
 		{
@@ -16,40 +20,35 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"plate-col"
+			"name":"spikesbottom-col"
 		},
 		{
 			"mesh":1,
-			"name":"spikes-col"
+			"name":"spikes-col",
+			"translation":[
+				-0.5862739682197571,
+				0.002341017359867692,
+				0.5529199242591858
+			]
 		}
 	],
 	"materials":[
 		{
 			"doubleSided":true,
-			"name":"Material",
+			"extensions":{
+				"KHR_materials_specular":{
+					"specularFactor":0
+				},
+				"KHR_materials_ior":{
+					"ior":1.4500000476837158
+				}
+			},
+			"name":"Dungeon_Atlas",
 			"pbrMetallicRoughness":{
-				"baseColorFactor":[
-					0.1149485856294632,
-					0.13263972103595734,
-					0.1445714235305786,
-					1
-				],
-				"metallicFactor":0,
-				"roughnessFactor":0.5
-			}
-		},
-		{
-			"doubleSided":true,
-			"name":"Material.001",
-			"pbrMetallicRoughness":{
-				"baseColorFactor":[
-					0.0024505932815372944,
-					0.0024505932815372944,
-					0.0024505932815372944,
-					1
-				],
-				"metallicFactor":0,
-				"roughnessFactor":0.5
+				"baseColorTexture":{
+					"index":0
+				},
+				"metallicFactor":0.3333333432674408
 			}
 		}
 	],
@@ -69,7 +68,7 @@
 			]
 		},
 		{
-			"name":"Cube.001",
+			"name":"Cube.003",
 			"primitives":[
 				{
 					"attributes":{
@@ -78,24 +77,37 @@
 						"TEXCOORD_0":6
 					},
 					"indices":7,
-					"material":1
+					"material":0
 				}
 			]
+		}
+	],
+	"textures":[
+		{
+			"sampler":0,
+			"source":0
+		}
+	],
+	"images":[
+		{
+			"mimeType":"image/png",
+			"name":"Dungeon_Atlas_Albedo",
+			"uri":"Dungeon_Atlas_Albedo.png"
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":24,
+			"count":280,
 			"max":[
 				1,
-				0.10000000894069672,
+				0.16121619939804077,
 				1
 			],
 			"min":[
 				-1,
-				-1.1175870895385742e-08,
+				0,
 				-1
 			],
 			"type":"VEC3"
@@ -103,109 +115,115 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":24,
+			"count":280,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":24,
+			"count":280,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":36,
+			"count":612,
 			"type":"SCALAR"
 		},
 		{
 			"bufferView":4,
 			"componentType":5126,
-			"count":640,
+			"count":360,
 			"max":[
-				0.612817645072937,
-				0.5435514450073242,
-				0.612817645072937
+				1.226029396057129,
+				1.2364400625228882,
+				0.09528031945228577
 			],
 			"min":[
-				-0.612817645072937,
-				-0.1327204406261444,
-				-0.612817645072937
+				-0.07362952828407288,
+				0.1019248217344284,
+				-1.2152906656265259
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":640,
+			"count":360,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":640,
+			"count":360,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":7,
 			"componentType":5123,
-			"count":930,
+			"count":540,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":288,
+			"byteLength":3360,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":288,
-			"byteOffset":288,
+			"byteLength":3360,
+			"byteOffset":3360,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":192,
-			"byteOffset":576,
+			"byteLength":2240,
+			"byteOffset":6720,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":72,
-			"byteOffset":768,
+			"byteLength":1224,
+			"byteOffset":8960,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":7680,
-			"byteOffset":840,
+			"byteLength":4320,
+			"byteOffset":10184,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":7680,
-			"byteOffset":8520,
+			"byteLength":4320,
+			"byteOffset":14504,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":5120,
-			"byteOffset":16200,
+			"byteLength":2880,
+			"byteOffset":18824,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1860,
-			"byteOffset":21320,
+			"byteLength":1080,
+			"byteOffset":21704,
 			"target":34963
+		}
+	],
+	"samplers":[
+		{
+			"magFilter":9728,
+			"minFilter":9984
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":23180,
+			"byteLength":22784,
 			"uri":"spikes.bin"
 		}
 	]

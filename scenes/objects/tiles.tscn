@@ -1,5 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccvwibyjx4l30"]
+[gd_scene load_steps=7 format=3 uid="uid://ccvwibyjx4l30"]
 
 [ext_resource type="PackedScene" uid="uid://tlsy5hqocy6t" path="res://exports/tiles.gltf" id="1_c2goh"]
+[ext_resource type="Texture2D" uid="uid://c7qtp1v6vfgsb" path="res://assets/blend_files/textures/Grass_Atlas_Albedo.png" id="2_nx2tp"]
+[ext_resource type="Texture2D" uid="uid://cbxsfynmgw8te" path="res://assets/blend_files/textures/Grass_Atlas_Normal.png" id="3_e8fgd"]
+[ext_resource type="Texture2D" uid="uid://cv3jhsco5pmjy" path="res://assets/blend_files/textures/Wall_Atlas_Albedo.png" id="4_sq8v7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ihdnc"]
+albedo_texture = ExtResource("2_nx2tp")
+normal_enabled = true
+normal_texture = ExtResource("3_e8fgd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ory7"]
+albedo_texture = ExtResource("4_sq8v7")
+normal_scale = 0.28
+normal_texture = ExtResource("3_e8fgd")
 
 [node name="tiles" instance=ExtResource("1_c2goh")]
+
+[node name="grass02" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ihdnc")
+
+[node name="wall01" parent="." index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_7ory7")
