@@ -28,7 +28,7 @@ const KEY_ITEM_NAME := "KEY"
 var inventory = []
 
 func coord_to_position(c: Vector3i) -> Vector3:
-	return Vector3(c.x * 2 + 1.0, position.y, c.z * 2 + 1.0)
+	return Vector3(c.x * 2 + 1.0, 0.0, c.z * 2 + 1.0)
 	
 func dir_to_rotation(c: Vector3i) -> Vector3:
 	if c.z == -1:

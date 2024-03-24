@@ -29,7 +29,8 @@ const WALKING_STATE := "WALKING"
 const TURNING_STATE := "TURNING"
 const WALL_BUMP_STATE := "WALL_BUMP"
 const COOLDOWN_STATE := "COOLDOWN"
-## "IDLE", "WALKING", "TURNING", "COOLDOWN" or "WALL_BUMP"
+const DROPING_DOWN := "DROPING_DOWN"
+## "IDLE", "WALKING", "TURNING", "DROPING_DOWN", "COOLDOWN" or "WALL_BUMP"
 var movement_state := IDLE_STATE:
 	set(newState):
 		if movement_state == newState:
@@ -92,6 +93,16 @@ func apply_cooldown():
 	t.tween_interval(0.3)
 	t.tween_callback(func(): movement_state = IDLE_STATE)
 
+func apply_drop_down(tp: Teleporter):
+	assert(movement_state == IDLE_STATE)
+	movement_state = DROPING_DOWN
+	var t := create_tween()
+	t.tween_property(target, "position:y", target.position.y - Globals.TILE_SIZE, 0.2)
+	t.tween_callback(func(): 
+		# TODO: teleport player to the given position
+		tp.activate()
+		movement_state = IDLE_STATE)
+
 func _ready():
 	register_component()
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
@@ -100,15 +111,15 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == walk_animation_name:
 		# finish current movement command and reset blend value
 		assert(movement_state == WALKING_STATE)
-		grid_coordinate = new_coordinates
 		movement_state = IDLE_STATE
+		grid_coordinate = new_coordinates
 		blend_value = 0.0
 		target.position = target.coord_to_position(new_coordinates)
 		return
 	elif anim_name == turn_animation_name:
 		assert(movement_state == TURNING_STATE)
-		grid_direction = new_direction
 		movement_state = IDLE_STATE
+		grid_direction = new_direction
 		blend_value = 0.0
 		target.rotation = target.dir_to_rotation(new_direction)
 		return
