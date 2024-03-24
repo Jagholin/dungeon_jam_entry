@@ -1,0 +1,107 @@
+[gd_scene load_steps=9 format=3 uid="uid://w6t4afj1or6w"]
+
+[ext_resource type="Script" path="res://scripts/scenes/enemy.gd" id="1_buuye"]
+[ext_resource type="Script" path="res://scripts/components/ai_movement.gd" id="2_482be"]
+
+[sub_resource type="Animation" id="Animation_6pqf4"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GridMovementComponent:blend_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_skpfj"]
+resource_name = "turn"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GridMovementComponent:blend_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="Animation" id="Animation_oecr3"]
+resource_name = "walk"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GridMovementComponent:blend_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, 0.00190114, 1, -0.1, 0.00863743, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="Animation" id="Animation_20uh2"]
+resource_name = "wallbump"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GridMovementComponent:blend_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.0460151, 0.00715737, 0.403, -0.0184061, -0.0041602, 0.135139, -0.0041602, 0, -0.0546443, 0.00715737, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pwvpy"]
+_data = {
+"RESET": SubResource("Animation_6pqf4"),
+"turn": SubResource("Animation_skpfj"),
+"walk": SubResource("Animation_oecr3"),
+"wallbump": SubResource("Animation_20uh2")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gh2ne"]
+albedo_color = Color(0.192157, 0.6, 0.360784, 1)
+
+[node name="Enemy" type="Node3D"]
+script = ExtResource("1_buuye")
+
+[node name="GridMovementComponent" type="Node3D" parent="." node_paths=PackedStringArray("animation_player")]
+script = ExtResource("2_482be")
+archer_range = 3
+animation_player = NodePath("../AnimationPlayer")
+movement_listeners_can_interrupt = true
+warn_on_movement_listener_interruption = true
+on_the_wall = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pwvpy")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+size = Vector3(0.5, 0.5, 0.5)
+material = SubResource("StandardMaterial3D_gh2ne")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.1)
+size = Vector3(0.1, 0.1, 0.4)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
