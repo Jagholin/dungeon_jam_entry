@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://2gu4umricmwc"]
+[gd_scene load_steps=4 format=3 uid="uid://2gu4umricmwc"]
 
 [ext_resource type="Script" path="res://scripts/scenes/app_main.gd" id="1_qbgvk"]
 [ext_resource type="PackedScene" uid="uid://caq0aouuikchc" path="res://scenes/test_level.tscn" id="2_hnbt3"]
+[ext_resource type="PackedScene" uid="uid://b7a0bbxbdohnb" path="res://scenes/ui/pause_menu.tscn" id="3_u47db"]
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("ui_layer") groups=["app"]]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("ui_layer", "pause_layer") groups=["app"]]
 script = ExtResource("1_qbgvk")
 ui_layer = NodePath("UILayer")
+pause_layer = NodePath("PauseMenu")
 test_level = ExtResource("2_hnbt3")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
@@ -45,6 +47,14 @@ text = "Credits"
 layout_mode = 2
 text = "Quit"
 
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="PauseMenu" parent="PauseMenu" instance=ExtResource("3_u47db")]
+
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/StartTestLevelButton" to="." method="_on_start_test_level_button_pressed"]
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="quit" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_quit"]
+[connection signal="resume" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_resume"]
