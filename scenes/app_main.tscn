@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://2gu4umricmwc"]
 
 [ext_resource type="Script" path="res://scripts/scenes/app_main.gd" id="1_qbgvk"]
-[ext_resource type="PackedScene" uid="uid://caq0aouuikchc" path="res://scenes/game_level.tscn" id="2_hnbt3"]
+[ext_resource type="PackedScene" uid="uid://caq0aouuikchc" path="res://scenes/test_level.tscn" id="2_hnbt3"]
 
 [node name="Node3D" type="Node3D" node_paths=PackedStringArray("ui_layer") groups=["app"]]
 script = ExtResource("1_qbgvk")
 ui_layer = NodePath("UILayer")
-game_level = ExtResource("2_hnbt3")
+test_level = ExtResource("2_hnbt3")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -29,6 +29,10 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayer/CenterContainer"]
 layout_mode = 2
 
+[node name="StartTestLevelButton" type="Button" parent="UILayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start test level"
+
 [node name="StartButton" type="Button" parent="UILayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Start"
@@ -41,5 +45,6 @@ text = "Credits"
 layout_mode = 2
 text = "Quit"
 
+[connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/StartTestLevelButton" to="." method="_on_start_test_level_button_pressed"]
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
