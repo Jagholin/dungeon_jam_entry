@@ -1,11 +1,29 @@
-[gd_scene load_steps=14 format=3 uid="uid://cb3vsk6l10w6i"]
+[gd_scene load_steps=15 format=3 uid="uid://cb3vsk6l10w6i"]
 
 [ext_resource type="PackedScene" uid="uid://bed1bjrscq4bc" path="res://exports/trapdoor.gltf" id="1_7644u"]
 [ext_resource type="Script" path="res://scripts/scenes/trapdoor.gd" id="2_wulbb"]
 [ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="3_i7pig"]
 [ext_resource type="Script" path="res://scripts/components/player_tracker.gd" id="4_q6xw5"]
 
-[sub_resource type="Animation" id="Animation_m2ejr"]
+[sub_resource type="Animation" id="Animation_wbusj"]
+resource_name = "close_doors"
+length = 0.416667
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D:door_l")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -1.41065e-07, 1.42109e-14, -1, 6.71795e-08, 0.0333333, 1, -1.41065e-07, 1.42109e-14, -1, 6.71795e-08, 0.0666667, 1, -1.4105e-07, 2.07277e-09, -0.999892, -0.0146936, 0.1, 1, 1.40877e-07, -7.28324e-09, 0.998666, 0.0516304, 0.133333, 1, 1.40164e-07, -1.59187e-08, 0.993612, 0.112847, 0.166667, 1, 1.38368e-07, -2.74507e-08, 0.980883, 0.194596, 0.2, 1, 1.34831e-07, -4.14737e-08, 0.955804, 0.294004, 0.233333, 1, 1.29574e-07, -5.57673e-08, 0.918539, 0.395331, 0.266667, 1, 1.22932e-07, -6.91879e-08, 0.871459, 0.490468, 0.3, 1, 1.15604e-07, -8.08395e-08, 0.819509, 0.573066, 0.333333, 1, 1.08526e-07, -9.01191e-08, 0.769333, 0.638848, 0.366667, 1, 1.03472e-07, -9.5879e-08, 0.733509, 0.67968, 0.4, 1, 1.0072e-07, -9.87661e-08, 0.714, 0.700146, 0.416667, 1, 9.9748e-08, -9.9748e-08, 0.707107, 0.707107)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D:door_r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.707107, 7.61992e-08, 0.707107, 1.38016e-07, 0.0333333, 1, -0.707107, 7.61992e-08, 0.707107, 1.38016e-07, 0.0666667, 1, -0.70703, -0.01039, 0.707031, -0.0103899, 0.1, 1, 0.706164, 0.0365083, -0.706164, 0.0365082, 0.133333, 1, 0.70259, 0.0797947, -0.70259, 0.0797947, 0.166667, 1, 0.693589, 0.1376, -0.69359, 0.1376, 0.2, 1, 0.675855, 0.207892, -0.675856, 0.207892, 0.233333, 1, 0.649505, 0.279541, -0.649505, 0.279541, 0.266667, 1, 0.616215, 0.346813, -0.616215, 0.346813, 0.3, 1, 0.579481, 0.405219, -0.579481, 0.405219, 0.333333, 1, 0.544001, 0.451734, -0.544001, 0.451734, 0.366667, 1, 0.518669, 0.480606, -0.518669, 0.480606, 0.4, 1, 0.504874, 0.495078, -0.504874, 0.495078, 0.416667, 1, 0.5, 0.5, -0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_li3ep"]
 resource_name = "open_doors"
 length = 0.416667
 tracks/0/type = "rotation_3d"
@@ -23,9 +41,10 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0.5, 0.5, -0.5, 0.5, 0.0333333, 1, 0.5, 0.5, -0.5, 0.5, 0.0666667, 1, 0.507293, 0.492599, -0.507293, 0.492599, 0.1, 1, 0.525148, 0.473518, -0.525149, 0.473518, 0.133333, 1, 0.55323, 0.440383, -0.55323, 0.440383, 0.166667, 1, 0.58774, 0.393144, -0.58774, 0.393144, 0.2, 1, 0.624904, 0.3309, -0.624904, 0.3309, 0.233333, 1, 0.656935, 0.261604, -0.656935, 0.261604, 0.266667, 1, 0.680963, 0.190496, -0.680964, 0.190496, 0.3, 1, 0.696287, 0.123222, -0.696288, 0.123222, 0.333333, 1, 0.70409, 0.0652425, -0.704091, 0.0652425, 0.366667, 1, 0.706594, 0.0269144, -0.706595, 0.0269145, 0.4, 1, 0.707073, 0.00692677, -0.707073, 0.00692674, 0.416667, 1, -0.707107, 7.61992e-08, 0.707107, 1.38016e-07)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_u50fw"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1q082"]
 _data = {
-"open_doors": SubResource("Animation_m2ejr")
+"close_doors": SubResource("Animation_wbusj"),
+"open_doors": SubResource("Animation_li3ep")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_34p5k"]
@@ -71,7 +90,7 @@ bones/3/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 libraries = {
-"": SubResource("AnimationLibrary_u50fw")
+"": SubResource("AnimationLibrary_1q082")
 }
 tree_root = SubResource("AnimationNodeStateMachine_vu1io")
 anim_player = NodePath("../AnimationPlayer")

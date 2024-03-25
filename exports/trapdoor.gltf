@@ -142,7 +142,7 @@
 					}
 				}
 			],
-			"name":"open_doors",
+			"name":"close_doors",
 			"samplers":[
 				{
 					"input":7,
@@ -188,6 +188,121 @@
 					"input":7,
 					"interpolation":"STEP",
 					"output":17
+				}
+			]
+		},
+		{
+			"channels":[
+				{
+					"sampler":0,
+					"target":{
+						"node":2,
+						"path":"translation"
+					}
+				},
+				{
+					"sampler":1,
+					"target":{
+						"node":2,
+						"path":"rotation"
+					}
+				},
+				{
+					"sampler":2,
+					"target":{
+						"node":2,
+						"path":"scale"
+					}
+				},
+				{
+					"sampler":3,
+					"target":{
+						"node":0,
+						"path":"translation"
+					}
+				},
+				{
+					"sampler":4,
+					"target":{
+						"node":0,
+						"path":"rotation"
+					}
+				},
+				{
+					"sampler":5,
+					"target":{
+						"node":0,
+						"path":"scale"
+					}
+				},
+				{
+					"sampler":6,
+					"target":{
+						"node":1,
+						"path":"translation"
+					}
+				},
+				{
+					"sampler":7,
+					"target":{
+						"node":1,
+						"path":"rotation"
+					}
+				},
+				{
+					"sampler":8,
+					"target":{
+						"node":1,
+						"path":"scale"
+					}
+				}
+			],
+			"name":"open_doors",
+			"samplers":[
+				{
+					"input":7,
+					"interpolation":"STEP",
+					"output":18
+				},
+				{
+					"input":7,
+					"interpolation":"STEP",
+					"output":19
+				},
+				{
+					"input":7,
+					"interpolation":"STEP",
+					"output":20
+				},
+				{
+					"input":7,
+					"interpolation":"STEP",
+					"output":21
+				},
+				{
+					"input":12,
+					"interpolation":"LINEAR",
+					"output":22
+				},
+				{
+					"input":7,
+					"interpolation":"STEP",
+					"output":23
+				},
+				{
+					"input":7,
+					"interpolation":"STEP",
+					"output":24
+				},
+				{
+					"input":12,
+					"interpolation":"LINEAR",
+					"output":25
+				},
+				{
+					"input":7,
+					"interpolation":"STEP",
+					"output":26
 				}
 			]
 		}
@@ -240,7 +355,7 @@
 		{
 			"mimeType":"image/png",
 			"name":"Dungeon2_Atlas_Albedo",
-			"uri":"Dungeon2_Atlas_Albedo.png"
+			"uri":"textures/Dungeon2_Atlas_Albedo.png"
 		}
 	],
 	"skins":[
@@ -385,6 +500,60 @@
 			"componentType":5126,
 			"count":2,
 			"type":"VEC3"
+		},
+		{
+			"bufferView":18,
+			"componentType":5126,
+			"count":2,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":19,
+			"componentType":5126,
+			"count":2,
+			"type":"VEC4"
+		},
+		{
+			"bufferView":20,
+			"componentType":5126,
+			"count":2,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":21,
+			"componentType":5126,
+			"count":2,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":22,
+			"componentType":5126,
+			"count":10,
+			"type":"VEC4"
+		},
+		{
+			"bufferView":23,
+			"componentType":5126,
+			"count":2,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":24,
+			"componentType":5126,
+			"count":2,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":25,
+			"componentType":5126,
+			"count":10,
+			"type":"VEC4"
+		},
+		{
+			"bufferView":26,
+			"componentType":5126,
+			"count":2,
+			"type":"VEC3"
 		}
 	],
 	"bufferViews":[
@@ -483,6 +652,51 @@
 			"buffer":0,
 			"byteLength":24,
 			"byteOffset":7376
+		},
+		{
+			"buffer":0,
+			"byteLength":24,
+			"byteOffset":7400
+		},
+		{
+			"buffer":0,
+			"byteLength":32,
+			"byteOffset":7424
+		},
+		{
+			"buffer":0,
+			"byteLength":24,
+			"byteOffset":7456
+		},
+		{
+			"buffer":0,
+			"byteLength":24,
+			"byteOffset":7480
+		},
+		{
+			"buffer":0,
+			"byteLength":160,
+			"byteOffset":7504
+		},
+		{
+			"buffer":0,
+			"byteLength":24,
+			"byteOffset":7664
+		},
+		{
+			"buffer":0,
+			"byteLength":24,
+			"byteOffset":7688
+		},
+		{
+			"buffer":0,
+			"byteLength":160,
+			"byteOffset":7712
+		},
+		{
+			"buffer":0,
+			"byteLength":24,
+			"byteOffset":7872
 		}
 	],
 	"samplers":[
@@ -493,7 +707,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":7400,
+			"byteLength":7896,
 			"uri":"trapdoor.bin"
 		}
 	]
