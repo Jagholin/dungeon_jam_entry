@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://caq0aouuikchc"]
+[gd_scene load_steps=23 format=3 uid="uid://caq0aouuikchc"]
 
 [ext_resource type="Script" path="res://scripts/scenes/game_level.gd" id="1_tptln"]
 [ext_resource type="MeshLibrary" uid="uid://c1pw1i8o83p8k" path="res://resources/mesh_libraries/tiles.tres" id="2_pbwvx"]
@@ -14,6 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://7wjwjrbjlvwf" path="res://scenes/objects/player_trigger.tscn" id="12_10smp"]
 [ext_resource type="PackedScene" uid="uid://bbjdg4b2i0rh3" path="res://scenes/objects/gameloop_impl/logic_traps.tscn" id="13_brkgb"]
 [ext_resource type="Texture2D" uid="uid://bdmtxyev3m35e" path="res://exports/images/attack_indicator.png" id="14_mygcq"]
+[ext_resource type="PackedScene" uid="uid://cqlo253qms8ga" path="res://scenes/objects/door_1.tscn" id="15_cove1"]
+[ext_resource type="PackedScene" uid="uid://fqd2hfb535x0" path="res://scenes/objects/door_2.tscn" id="16_176es"]
+[ext_resource type="PackedScene" uid="uid://wnqksypssju4" path="res://scenes/objects/door_3.tscn" id="17_4il5a"]
+[ext_resource type="PackedScene" uid="uid://du8wabj36q6vf" path="res://scenes/objects/crate.tscn" id="18_1jfpd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_es45i"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -289,6 +293,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1, 1)
 
 [node name="PlayerTrigger_info_levers" parent="." instance=ExtResource("12_10smp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 1, 1)
+
+[node name="door_1" parent="." instance=ExtResource("15_cove1")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0.92391, 0.061, 4.25522)
+
+[node name="door_2" parent="." instance=ExtResource("16_176es")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0.947729, 0, 9)
+
+[node name="door_3" parent="." instance=ExtResource("17_4il5a")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 1, 0, 13)
+
+[node name="crate" parent="." instance=ExtResource("18_1jfpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.561107, 29)
+
+[node name="crate2" parent="." instance=ExtResource("18_1jfpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28774, 0.561107, 29)
+
+[node name="crate3" parent="." instance=ExtResource("18_1jfpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.65713, 0.561107, 28.4022)
+
+[node name="crate4" parent="." instance=ExtResource("18_1jfpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.77288, 1.67832, 28.4022)
+
+[node name="crate5" parent="." instance=ExtResource("18_1jfpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28621, 0.561107, 27.8254)
 
 [connection signal="switched_on" from="Lever2" to="Teleporter" method="activate"]
 [connection signal="switched_off" from="Lever4" to="trapdoor" method="close"]

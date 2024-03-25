@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://wnqksypssju4"]
+
+[ext_resource type="PackedScene" uid="uid://bpsl1f7lltfy7" path="res://exports/door_3.gltf" id="1_kguto"]
+
+[node name="door_3" instance=ExtResource("1_kguto")]
