@@ -29,3 +29,7 @@ func map_global_to_gridcoord(c: Vector3) -> Vector3i:
 
 func _on_buttons_pressed(value):
 	print("You pressed the button with value, ", value)
+
+
+func _on_simon_says_success():
+	print("You won the minigame! congrats")

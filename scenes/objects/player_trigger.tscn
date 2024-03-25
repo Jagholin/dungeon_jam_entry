@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://7wjwjrbjlvwf"]
+
+[ext_resource type="PackedScene" uid="uid://ccnuoxs23ntro" path="res://scenes/objects/marker3d.tscn" id="1_1qaeo"]
+[ext_resource type="Script" path="res://scripts/scenes/player_trigger.gd" id="1_u5vj7"]
+[ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="2_56sjo"]
+[ext_resource type="Script" path="res://scripts/components/player_tracker.gd" id="3_i32h5"]
+
+[node name="PlayerTrigger" type="Node3D" node_paths=PackedStringArray("player_tracker")]
+script = ExtResource("1_u5vj7")
+player_tracker = NodePath("PlayerTrackerComponent")
+
+[node name="Marker3d" parent="." instance=ExtResource("1_1qaeo")]
+
+[node name="GridBoundComponent" type="Node3D" parent="."]
+script = ExtResource("2_56sjo")
+on_the_wall = false
+
+[node name="PlayerTrackerComponent" type="Node3D" parent="." node_paths=PackedStringArray("grid_bound")]
+script = ExtResource("3_i32h5")
+grid_bound = NodePath("../GridBoundComponent")
+
+[node name="hideme" type="CSGSphere3D" parent="."]

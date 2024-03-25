@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca0smol0uwp6y"]
+
+[ext_resource type="Script" path="res://scripts/gameloop/simon_says.gd" id="1_xggc6"]
+
+[node name="SimonSays" type="Node3D" node_paths=PackedStringArray("buttons", "highlight_timer")]
+script = ExtResource("1_xggc6")
+buttons = [null, null, null, null, null, null, null, null, null, null]
+highlight_timer = NodePath("HighlightTimer")
+
+[node name="HighlightTimer" type="Timer" parent="."]
+wait_time = 0.15
