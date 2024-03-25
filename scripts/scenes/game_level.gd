@@ -7,8 +7,14 @@ signal game_over()
 var mesh_library: MeshLibrary
 @onready var hp_bar: ProgressBar = %HPBar
 @onready var notification_label: Label = %NotificationLabel
+@onready var attack_indicator: TextureRect = %AttackIndicator
 
 var notify_tween: Tween = null
+var attack_tween: Tween = null
+
+func _input(event):
+	if event.is_action_pressed("attack"):
+		show_attack_indicator()
 
 func _ready():
 	Stats.health_changed.connect(on_health_changed)
@@ -63,6 +69,15 @@ func show_note(note: String):
 		notification_label.text = ""
 		notify_tween = null)
 
+func show_attack_indicator():
+	if attack_tween:
+		attack_tween.kill()
+	attack_indicator.show()
+	attack_tween = create_tween()
+	attack_tween.tween_interval(0.23)
+	attack_tween.tween_callback(func():
+		attack_indicator.hide()
+		attack_tween = null)
 
 func _on_player_trigger_info_enemy_player_entered():
 	show_note("Enemy encounter")
