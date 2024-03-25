@@ -245,6 +245,33 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_jmxxs")
 
+[node name="NotificationLabel" type="Label" parent="HUDLayer/MarginContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+
+[node name="PlayerTrigger_info_enemy" parent="." instance=ExtResource("12_10smp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 1, -1)
+
+[node name="PlayerTrigger_info_ss" parent="." instance=ExtResource("12_10smp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1, 1)
+
+[node name="PlayerTrigger_info_levers" parent="." instance=ExtResource("12_10smp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 1, 1)
+
 [connection signal="switched_on" from="Lever2" to="Teleporter" method="activate"]
 [connection signal="switched_off" from="Lever4" to="trapdoor" method="close"]
 [connection signal="switched_on" from="Lever4" to="trapdoor" method="open"]
@@ -253,3 +280,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_jmxxs")
 [connection signal="timeout" from="Timer" to="buttons" method="highlight"]
 [connection signal="success" from="SimonSays" to="." method="_on_simon_says_success"]
 [connection signal="player_entered" from="ss_trigger" to="SimonSays" method="start_game"]
+[connection signal="player_entered" from="PlayerTrigger_info_enemy" to="." method="_on_player_trigger_info_enemy_player_entered"]
+[connection signal="player_entered" from="PlayerTrigger_info_ss" to="." method="_on_player_trigger_info_ss_player_entered"]
+[connection signal="player_entered" from="PlayerTrigger_info_levers" to="." method="_on_player_trigger_info_levers_player_entered"]

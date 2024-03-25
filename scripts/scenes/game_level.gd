@@ -6,6 +6,9 @@ signal game_over()
 @export var grid_map: GridMap
 var mesh_library: MeshLibrary
 @onready var hp_bar: ProgressBar = %HPBar
+@onready var notification_label: Label = %NotificationLabel
+
+var notify_tween: Tween = null
 
 func _ready():
 	Stats.health_changed.connect(on_health_changed)
@@ -49,3 +52,25 @@ func on_health_changed():
 		return
 	hp_bar.value = Stats.health
 	hp_bar.max_value = Stats.max_health
+
+func show_note(note: String):
+	if notify_tween:
+		notify_tween.kill()
+	notification_label.text = note
+	notify_tween = create_tween()
+	notify_tween.tween_interval(1.5)
+	notify_tween.tween_callback(func():
+		notification_label.text = ""
+		notify_tween = null)
+
+
+func _on_player_trigger_info_enemy_player_entered():
+	show_note("Enemy encounter")
+
+
+func _on_player_trigger_info_ss_player_entered():
+	show_note("Simon says mini-game")
+
+
+func _on_player_trigger_info_levers_player_entered():
+	show_note("Traps and levers")

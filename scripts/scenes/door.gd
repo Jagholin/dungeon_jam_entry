@@ -3,6 +3,7 @@ extends Node3D
 
 @export var opens_when_clicked: bool = true
 @export var closes_automatically: bool = true
+@export var door_note: String = "Click on the door to open"
 @export_group("Internal")
 @export var grid_bound: GridBoundComponent
 @export var player_tracker: PlayerTrackerComponent
@@ -14,6 +15,8 @@ var is_open: bool = false
 var is_transitioning: bool = false
 
 func on_movement_initiated() -> MovementListenerComponent.MovementEffect:
+	if not is_open and not is_transitioning:
+		Globals.get_current_level().show_note(door_note)
 	return MovementListenerComponent.MovementEffect.NONE if is_open and not is_transitioning \
 		else MovementListenerComponent.MovementEffect.PREVENT_MOVEMENT
 
