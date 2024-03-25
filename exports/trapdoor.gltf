@@ -3,6 +3,10 @@
 		"generator":"Khronos glTF Blender I/O v4.0.44",
 		"version":"2.0"
 	},
+	"extensionsUsed":[
+		"KHR_materials_specular",
+		"KHR_materials_ior"
+	],
 	"scene":0,
 	"scenes":[
 		{
@@ -138,7 +142,7 @@
 					}
 				}
 			],
-			"name":"close_doors",
+			"name":"open_doors",
 			"samplers":[
 				{
 					"input":7,
@@ -186,136 +190,25 @@
 					"output":17
 				}
 			]
-		},
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":2,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":2,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":2,
-						"path":"scale"
-					}
-				},
-				{
-					"sampler":3,
-					"target":{
-						"node":0,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":4,
-					"target":{
-						"node":0,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":5,
-					"target":{
-						"node":0,
-						"path":"scale"
-					}
-				},
-				{
-					"sampler":6,
-					"target":{
-						"node":1,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":7,
-					"target":{
-						"node":1,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":8,
-					"target":{
-						"node":1,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"open_doors",
-			"samplers":[
-				{
-					"input":7,
-					"interpolation":"STEP",
-					"output":18
-				},
-				{
-					"input":7,
-					"interpolation":"STEP",
-					"output":19
-				},
-				{
-					"input":7,
-					"interpolation":"STEP",
-					"output":20
-				},
-				{
-					"input":7,
-					"interpolation":"STEP",
-					"output":21
-				},
-				{
-					"input":12,
-					"interpolation":"LINEAR",
-					"output":22
-				},
-				{
-					"input":7,
-					"interpolation":"STEP",
-					"output":23
-				},
-				{
-					"input":7,
-					"interpolation":"STEP",
-					"output":24
-				},
-				{
-					"input":12,
-					"interpolation":"LINEAR",
-					"output":25
-				},
-				{
-					"input":7,
-					"interpolation":"STEP",
-					"output":26
-				}
-			]
 		}
 	],
 	"materials":[
 		{
 			"doubleSided":true,
-			"name":"Material",
+			"extensions":{
+				"KHR_materials_specular":{
+					"specularFactor":0
+				},
+				"KHR_materials_ior":{
+					"ior":1.4500000476837158
+				}
+			},
+			"name":"Dungeon_Atlas",
 			"pbrMetallicRoughness":{
-				"baseColorFactor":[
-					0.800000011920929,
-					0.800000011920929,
-					0.800000011920929,
-					1
-				],
-				"metallicFactor":0,
-				"roughnessFactor":0.5
+				"baseColorTexture":{
+					"index":0
+				},
+				"metallicFactor":0
 			}
 		}
 	],
@@ -337,6 +230,19 @@
 			]
 		}
 	],
+	"textures":[
+		{
+			"sampler":0,
+			"source":0
+		}
+	],
+	"images":[
+		{
+			"mimeType":"image/png",
+			"name":"Dungeon2_Atlas_Albedo",
+			"uri":"Dungeon2_Atlas_Albedo.png"
+		}
+	],
 	"skins":[
 		{
 			"inverseBindMatrices":6,
@@ -353,7 +259,7 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":106,
+			"count":120,
 			"max":[
 				1,
 				0,
@@ -369,25 +275,25 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":106,
+			"count":120,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":106,
+			"count":120,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5121,
-			"count":106,
+			"count":120,
 			"type":"VEC4"
 		},
 		{
 			"bufferView":4,
 			"componentType":5126,
-			"count":106,
+			"count":120,
 			"type":"VEC4"
 		},
 		{
@@ -479,208 +385,115 @@
 			"componentType":5126,
 			"count":2,
 			"type":"VEC3"
-		},
-		{
-			"bufferView":18,
-			"componentType":5126,
-			"count":2,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":19,
-			"componentType":5126,
-			"count":2,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":20,
-			"componentType":5126,
-			"count":2,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":21,
-			"componentType":5126,
-			"count":2,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":22,
-			"componentType":5126,
-			"count":10,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":23,
-			"componentType":5126,
-			"count":2,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":24,
-			"componentType":5126,
-			"count":2,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":25,
-			"componentType":5126,
-			"count":10,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":26,
-			"componentType":5126,
-			"count":2,
-			"type":"VEC3"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":1272,
+			"byteLength":1440,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1272,
-			"byteOffset":1272,
+			"byteLength":1440,
+			"byteOffset":1440,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":848,
-			"byteOffset":2544,
+			"byteLength":960,
+			"byteOffset":2880,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":424,
-			"byteOffset":3392,
+			"byteLength":480,
+			"byteOffset":3840,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1696,
-			"byteOffset":3816,
+			"byteLength":1920,
+			"byteOffset":4320,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":360,
-			"byteOffset":5512,
+			"byteOffset":6240,
 			"target":34963
 		},
 		{
 			"buffer":0,
 			"byteLength":256,
-			"byteOffset":5872
+			"byteOffset":6600
 		},
 		{
 			"buffer":0,
 			"byteLength":8,
-			"byteOffset":6128
+			"byteOffset":6856
 		},
 		{
 			"buffer":0,
 			"byteLength":24,
-			"byteOffset":6136
+			"byteOffset":6864
 		},
 		{
 			"buffer":0,
 			"byteLength":32,
-			"byteOffset":6160
+			"byteOffset":6888
 		},
 		{
 			"buffer":0,
 			"byteLength":24,
-			"byteOffset":6192
+			"byteOffset":6920
 		},
 		{
 			"buffer":0,
 			"byteLength":24,
-			"byteOffset":6216
+			"byteOffset":6944
 		},
 		{
 			"buffer":0,
 			"byteLength":40,
-			"byteOffset":6240
+			"byteOffset":6968
 		},
 		{
 			"buffer":0,
 			"byteLength":160,
-			"byteOffset":6280
+			"byteOffset":7008
 		},
 		{
 			"buffer":0,
 			"byteLength":24,
-			"byteOffset":6440
+			"byteOffset":7168
 		},
 		{
 			"buffer":0,
 			"byteLength":24,
-			"byteOffset":6464
+			"byteOffset":7192
 		},
 		{
 			"buffer":0,
 			"byteLength":160,
-			"byteOffset":6488
+			"byteOffset":7216
 		},
 		{
 			"buffer":0,
 			"byteLength":24,
-			"byteOffset":6648
-		},
+			"byteOffset":7376
+		}
+	],
+	"samplers":[
 		{
-			"buffer":0,
-			"byteLength":24,
-			"byteOffset":6672
-		},
-		{
-			"buffer":0,
-			"byteLength":32,
-			"byteOffset":6696
-		},
-		{
-			"buffer":0,
-			"byteLength":24,
-			"byteOffset":6728
-		},
-		{
-			"buffer":0,
-			"byteLength":24,
-			"byteOffset":6752
-		},
-		{
-			"buffer":0,
-			"byteLength":160,
-			"byteOffset":6776
-		},
-		{
-			"buffer":0,
-			"byteLength":24,
-			"byteOffset":6936
-		},
-		{
-			"buffer":0,
-			"byteLength":24,
-			"byteOffset":6960
-		},
-		{
-			"buffer":0,
-			"byteLength":160,
-			"byteOffset":6984
-		},
-		{
-			"buffer":0,
-			"byteLength":24,
-			"byteOffset":7144
+			"magFilter":9728,
+			"minFilter":9984
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":7168,
+			"byteLength":7400,
 			"uri":"trapdoor.bin"
 		}
 	]
