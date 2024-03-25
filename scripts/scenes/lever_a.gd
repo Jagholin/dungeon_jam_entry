@@ -7,10 +7,10 @@ signal value_changed(val: bool)
 
 @export var on_by_default: bool = false
 @export var switching_speed: float = 1.0
-@export_group("Internals")
-@export var player_tracker: PlayerTrackerComponent
-@export var animation_player: AnimationPlayer
-@export var animation_tree: AnimationTree
+
+@onready var player_tracker: PlayerTrackerComponent = $PlayerTrackerComponent
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_tree: AnimationTree = $AnimationTree
 
 var value: bool = false
 var is_transitioning: bool = false
@@ -42,7 +42,7 @@ func _ready():
 	switching_state_to = on_by_default
 
 func _on_static_body_3d_input_event(_camera, event, _position, _normal, _shape_idx):
-	print("event caught")
+	#print("event caught")
 	if is_transitioning:
 		return
 	if not player_tracker.player_is_close:

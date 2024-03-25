@@ -21,7 +21,7 @@ func initialize():
 	# negative Z is the forward direction
 	var testPoint := target.to_global(Vector3(0, 0, -Globals.TILE_SIZE))
 	grid_direction = l.map_global_to_gridcoord(testPoint) - grid_coordinate
-	print("GridDirectionalComponent: Grid direction of ", grid_direction)
+	#print("GridDirectionalComponent: Grid direction of ", grid_direction)
 
 func get_component_name() -> StringName:
 	return GD_COMPONENT_NAME

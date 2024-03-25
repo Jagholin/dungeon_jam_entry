@@ -19,11 +19,14 @@ stream_2/weight = 1.0
 stream_3/stream = ExtResource("5_7fu05")
 stream_3/weight = 1.0
 
-[node name="Character" type="Node3D" groups=["character"]]
+[node name="Character" type="Node3D" node_paths=PackedStringArray("camera_swap_timer", "camera") groups=["character"]]
 script = ExtResource("1_mx6dn")
+camera_swap_timer = NodePath("CameraSwapTimer")
+camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.505)
+current = true
 fov = 70.8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -41,3 +44,6 @@ animation_player = NodePath("../AnimationPlayer")
 step_sound_player = NodePath("../StepSoundsPlayer")
 movement_listeners_can_interrupt = true
 on_the_wall = false
+
+[node name="CameraSwapTimer" type="Timer" parent="."]
+wait_time = 2.0

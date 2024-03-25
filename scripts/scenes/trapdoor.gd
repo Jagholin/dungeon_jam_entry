@@ -20,6 +20,10 @@ func close():
 	animation_tree["parameters/conditions/open"] = false
 	animation_tree["parameters/conditions/closed"] = true
 
+func toggle():
+	animation_tree["parameters/conditions/open"] = not animation_tree["parameters/conditions/open"]
+	animation_tree["parameters/conditions/closed"] = not animation_tree["parameters/conditions/closed"]
+
 func initiate_fall():
 	var chr := Globals.get_character_controller()
 	var cmp := chr.get_component(GridMovementComponent.GM_COMPONENT_NAME) as GridMovementComponent

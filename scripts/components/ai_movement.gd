@@ -28,10 +28,10 @@ class LocationValue:
 	var start_distance: int
 	var previous_location: LocationValue = null
 
-	static func from_point(p: Vector3i, value: int = -1, start_disctance: int = 0) -> LocationValue:
+	static func from_point(p: Vector3i, nvalue: int = -1, start_disctance: int = 0) -> LocationValue:
 		var temp := LocationValue.new()
 		temp.loc = p
-		temp.value = value
+		temp.value = nvalue
 		temp.start_distance = start_disctance
 		return temp
 
@@ -100,7 +100,7 @@ func move_to(pos: Vector3i) -> int:
 		path_cache = _pathfindTo(pathGoals, func(p: Vector3i): 
 			return Obstacles.is_an_obstacle(p) or Globals.get_current_level().is_a_wall(p), max_pathfind_distance)
 		path_goal = pos
-	print("Current path is ", path_cache)
+	#print("Current path is ", path_cache)
 	if grid_coordinate == pos:
 		return POSITION_REACHED
 	if path_cache.is_empty():
@@ -141,7 +141,7 @@ func approach(pos: Vector3i) -> int:
 			return Obstacles.is_an_obstacle(p) or Globals.get_current_level().is_a_wall(p), max_pathfind_distance)
 		path_goal = pos
 
-	print("Current path is ", path_cache)
+	#print("Current path is ", path_cache)
 	if path_cache.is_empty():
 		return NO_PATH
 	var next_cell := path_cache[0] as Vector3i
@@ -155,13 +155,13 @@ func approach(pos: Vector3i) -> int:
 		path_cache.pop_front()
 	elif grid_coordinate - grid_direction == next_cell:
 		# do 180
-		print("180 - rotating left")
+		#print("180 - rotating left")
 		rotate_left()
 	elif grid_coordinate + Vector3i(grid_direction.z, 0, -grid_direction.x) == next_cell:
-		print("rotating left")
+		#print("rotating left")
 		rotate_left()
 	elif grid_coordinate + Vector3i(-grid_direction.z, 0, grid_direction.x) == next_cell:
-		print("rotating right")
+		#print("rotating right")
 		rotate_right()
 	else:
 		push_error("This cant happen lol")

@@ -1,4 +1,4 @@
-class_name Stats
+class_name StatsDeprecated
 extends Resource
 
 @export var health: int

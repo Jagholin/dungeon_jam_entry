@@ -5,6 +5,10 @@ extends Node3D
 @onready var step_sound_player: AudioStreamPlayer = $StepSoundsPlayer
 @onready var grid_movement: GridMovementComponent = $GridMovementComponent
 
+@export_group("Internals")
+@export var camera_swap_timer: Timer
+@export var camera: Camera3D
+
 enum MovementCommand { LEFT_COMMAND, RIGHT_COMMAND, FORWARD_COMMAND, BACK_COMMAND, STRAFE_LEFT_COMMAND, STRAFE_RIGHT_COMMAND }
 const movement_dictionary := {
 	"forward" = MovementCommand.FORWARD_COMMAND,
@@ -71,7 +75,7 @@ func _process(_delta):
 	movement_functions[next_command].call(grid_movement)
 	
 func on_item_pickup(item_name: String):
-	print("Item added: {0}".format([item_name]))
+	#print("Item added: {0}".format([item_name]))
 	Globals.get_current_level().show_notice("You picked up: {0}".format([item_name]))
 	inventory.push_back(item_name)
 	
@@ -88,3 +92,8 @@ func get_component(componentClassName: StringName) -> Component:
 		if Component.is_a_component(c) and componentClassName in c.get_component_names():
 			return c as Component
 	return null
+
+func look_through(cam: Camera3D, stop_signal: Signal) -> void:
+	cam.make_current()
+	await stop_signal
+	camera.make_current()

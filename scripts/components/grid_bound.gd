@@ -13,7 +13,7 @@ var grid_coordinate: Vector3i:
 		if newValue == grid_coordinate:
 			return
 		grid_coordinate = newValue
-		print("grid coordinate set: ", newValue)
+		#print("grid coordinate set: ", newValue)
 		grid_coordinate_changed.emit(newValue)
 
 @export var on_the_wall: bool = true

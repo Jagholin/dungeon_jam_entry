@@ -1,10 +1,16 @@
 class_name Level
 extends Node3D
 
+signal game_over()
+
 @export var grid_map: GridMap
 var mesh_library: MeshLibrary
+@onready var hp_bar: ProgressBar = %HPBar
 
 func _ready():
+	Stats.health_changed.connect(on_health_changed)
+	Stats.reset_stats()
+	on_health_changed()
 	mesh_library = grid_map.mesh_library
 	call_deferred(&"after_ready")
 
@@ -28,4 +34,18 @@ func map_global_to_gridcoord(c: Vector3) -> Vector3i:
 
 
 func _on_buttons_pressed(value):
-	print("You pressed the button with value, ", value)
+	pass
+	#print("You pressed the button with value, ", value)
+
+
+func _on_simon_says_success():
+	#pass
+	print("You won the minigame! congrats")
+
+func on_health_changed():
+	if Stats.health <= 0:
+		print("Game Over")
+		game_over.emit()
+		return
+	hp_bar.value = Stats.health
+	hp_bar.max_value = Stats.max_health
