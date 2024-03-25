@@ -75,7 +75,7 @@ func _process(_delta):
 	movement_functions[next_command].call(grid_movement)
 	
 func on_item_pickup(item_name: String):
-	print("Item added: {0}".format([item_name]))
+	#print("Item added: {0}".format([item_name]))
 	Globals.get_current_level().show_notice("You picked up: {0}".format([item_name]))
 	inventory.push_back(item_name)
 	

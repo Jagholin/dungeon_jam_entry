@@ -42,7 +42,7 @@ func _ready():
 	switching_state_to = on_by_default
 
 func _on_static_body_3d_input_event(_camera, event, _position, _normal, _shape_idx):
-	print("event caught")
+	#print("event caught")
 	if is_transitioning:
 		return
 	if not player_tracker.player_is_close:

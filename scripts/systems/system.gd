@@ -13,3 +13,5 @@ func initialize():
 	for c in components:
 		c.initialize()
 
+func force_clear():
+	components.clear()

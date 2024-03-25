@@ -25,7 +25,8 @@ func reset_hurting():
 	hurting = false
 
 func oops():
-	print("oohps")
+	pass
+	#print("oohps")
 
 func on_movement_initiated():
 	if hurting:

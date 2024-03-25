@@ -56,5 +56,6 @@ visible = false
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/StartTestLevelButton" to="." method="_on_start_test_level_button_pressed"]
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="exit_to_menu" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_exit_to_menu"]
 [connection signal="quit" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_quit"]
 [connection signal="resume" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_resume"]
