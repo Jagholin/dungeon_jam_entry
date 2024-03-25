@@ -124,11 +124,8 @@ states/lever_movements_switch_on/node = SubResource("AnimationNodeAnimation_r8oi
 states/lever_movements_switch_on/position = Vector2(514, 162)
 transitions = ["Start", "lever_movements_switch_off", SubResource("AnimationNodeStateMachineTransition_2ham2"), "Start", "lever_movements_switch_on", SubResource("AnimationNodeStateMachineTransition_0ncrb"), "lever_movements_switch_off", "lever_movements_switch_on", SubResource("AnimationNodeStateMachineTransition_8asur"), "lever_movements_switch_on", "lever_movements_switch_off", SubResource("AnimationNodeStateMachineTransition_uuqw8")]
 
-[node name="Lever2" node_paths=PackedStringArray("player_tracker", "animation_player", "animation_tree") instance=ExtResource("1_plkcy")]
+[node name="Lever2" instance=ExtResource("1_plkcy")]
 script = ExtResource("2_wlf4l")
-player_tracker = NodePath("PlayerTrackerComponent")
-animation_player = NodePath("AnimationPlayer")
-animation_tree = NodePath("AnimationTree")
 
 [node name="Lever" parent="." index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.374943, -0.0993091)

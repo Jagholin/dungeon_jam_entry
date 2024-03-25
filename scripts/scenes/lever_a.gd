@@ -7,10 +7,10 @@ signal value_changed(val: bool)
 
 @export var on_by_default: bool = false
 @export var switching_speed: float = 1.0
-@export_group("Internals")
-@export var player_tracker: PlayerTrackerComponent
-@export var animation_player: AnimationPlayer
-@export var animation_tree: AnimationTree
+
+@onready var player_tracker: PlayerTrackerComponent = $PlayerTrackerComponent
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_tree: AnimationTree = $AnimationTree
 
 var value: bool = false
 var is_transitioning: bool = false
