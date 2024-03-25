@@ -54,6 +54,7 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_lpph1"]
 image = SubResource("Image_ar2go")
 
+
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vjilx"]
 data = PackedVector3Array(-1, 0, 1, 1, 0, -1, 1, 0, 1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
@@ -143,6 +144,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_wsx34")
+
 
 [sub_resource type="Image" id="Image_sjdir"]
 data = {
