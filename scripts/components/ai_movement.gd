@@ -96,9 +96,9 @@ func move_to(pos: Vector3i) -> int:
 				pathGoals.push_back(Vector3i(pos.x, pos.y, pos.z - i))
 		# filter out all walls and nonexisiting cells
 		pathGoals = pathGoals.filter(func(p: Vector3i): 
-			return Globals.get_current_level().location_exists(p) and not Globals.get_current_level().is_a_wall(p) and not Obstacles.is_an_obstacle(p))
+			return Globals.get_current_level().location_exists(p) and not Globals.get_current_level().is_a_wall(p) and not Obstacles.is_ai_obstacle(p))
 		path_cache = _pathfindTo(pathGoals, func(p: Vector3i): 
-			return Obstacles.is_an_obstacle(p) or Globals.get_current_level().is_a_wall(p), max_pathfind_distance)
+			return Obstacles.is_ai_obstacle(p) or Globals.get_current_level().is_a_wall(p), max_pathfind_distance)
 		path_goal = pos
 	#print("Current path is ", path_cache)
 	if grid_coordinate == pos:
@@ -134,11 +134,11 @@ func approach(pos: Vector3i) -> int:
 			pathGoals.push_back(Vector3i(pos.x, pos.y, pos.z - i))
 	# filter out all walls and nonexisiting cells
 	pathGoals = pathGoals.filter(func(p: Vector3i): 
-		return Globals.get_current_level().location_exists(p) and not Globals.get_current_level().is_a_wall(p) and not Obstacles.is_an_obstacle(p))
+		return Globals.get_current_level().location_exists(p) and not Globals.get_current_level().is_a_wall(p) and not Obstacles.is_ai_obstacle(p))
 
 	if pos != path_goal:
 		path_cache = _pathfindTo(pathGoals, func(p: Vector3i): 
-			return Obstacles.is_an_obstacle(p) or Globals.get_current_level().is_a_wall(p), max_pathfind_distance)
+			return Obstacles.is_ai_obstacle(p) or Globals.get_current_level().is_a_wall(p), max_pathfind_distance)
 		path_goal = pos
 
 	#print("Current path is ", path_cache)

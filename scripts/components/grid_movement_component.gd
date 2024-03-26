@@ -8,6 +8,7 @@ const GM_COMPONENT_NAME := &"GridMovementComponent"
 # @export var level: Level
 @export var movement_listeners_can_interrupt: bool = false
 @export var warn_on_movement_listener_interruption: bool = false
+@export var movement_creates_obstacles: bool = false
 
 func get_component_name() -> StringName:
 	return GM_COMPONENT_NAME
@@ -74,6 +75,8 @@ func apply_coordinates():
 	animation_player.play(walk_animation_name)
 	if step_sound_player:
 		step_sound_player.play()
+	if movement_creates_obstacles:
+		Obstacles.register_static_obstacle(new_coordinates)
 	
 func apply_direction():
 	blend_value = 0.0
@@ -107,10 +110,17 @@ func _ready():
 	register_component()
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 
+func initialize():
+	super.initialize()
+	if movement_creates_obstacles:
+		Obstacles.register_static_obstacle(grid_coordinate)
+
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == walk_animation_name:
 		# finish current movement command and reset blend value
 		assert(movement_state == WALKING_STATE)
+		if movement_creates_obstacles:
+			Obstacles.unregister_obstacle(grid_coordinate)
 		movement_state = IDLE_STATE
 		grid_coordinate = new_coordinates
 		blend_value = 0.0

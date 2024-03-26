@@ -82,6 +82,7 @@ archer_range = 3
 animation_player = NodePath("../AnimationPlayer")
 movement_listeners_can_interrupt = true
 warn_on_movement_listener_interruption = true
+movement_creates_obstacles = true
 on_the_wall = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
