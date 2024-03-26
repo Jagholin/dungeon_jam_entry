@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://blltfn0ofw8bf"]
+
+[ext_resource type="Texture2D" uid="uid://by2pmjhr1lxqo" path="res://exports/images/key.png" id="1_c2atj"]
+[ext_resource type="Script" path="res://scripts/scenes/ui/key_item.gd" id="1_qhg16"]
+
+[node name="KeyItem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qhg16")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Key" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("1_c2atj")
+expand_mode = 1
+
+[node name="NameLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "key name"

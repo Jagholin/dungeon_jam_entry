@@ -8,6 +8,9 @@ var mesh_library: MeshLibrary
 @onready var hp_bar: ProgressBar = %HPBar
 @onready var notification_label: Label = %NotificationLabel
 @onready var attack_indicator: TextureRect = %AttackIndicator
+@onready var inventory_list: VBoxContainer = %InventoryList
+
+var key_ui_scene = preload("res://scenes/ui/key_item.tscn")
 
 var notify_tween: Tween = null
 var attack_tween: Tween = null
@@ -19,8 +22,10 @@ func _input(event):
 
 func _ready():
 	Stats.health_changed.connect(on_health_changed)
+	Stats.inventory_changed.connect(on_inventory_changed)
 	Stats.reset_stats()
 	on_health_changed()
+	on_inventory_changed()
 	mesh_library = grid_map.mesh_library
 	call_deferred(&"after_ready")
 
@@ -62,6 +67,16 @@ func on_health_changed():
 		return
 	hp_bar.value = Stats.health
 	hp_bar.max_value = Stats.max_health
+
+func on_inventory_changed():
+	for ch in inventory_list.get_children():
+		ch.queue_free()
+	
+	for item in Stats.inventory:
+		if item.item_type == StatSystem.KEY_TYPE:
+			var keyUI = key_ui_scene.instantiate() as KeyUIItem
+			keyUI.key_name = item.item_name
+			inventory_list.add_child(keyUI)
 
 func show_note(note: String):
 	if notify_tween:

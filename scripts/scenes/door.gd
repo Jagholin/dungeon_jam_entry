@@ -4,6 +4,9 @@ extends Node3D
 @export var opens_when_clicked: bool = true
 @export var closes_automatically: bool = true
 @export var door_note: String = "Click on the door to open"
+@export var needs_key_to_unlock: bool = false
+@export var key_name: String
+@export var no_key_note: String = "You need a key to unlock this door"
 @export_group("Internal")
 @export var grid_bound: GridBoundComponent
 @export var player_tracker: PlayerTrackerComponent
@@ -13,6 +16,7 @@ extends Node3D
 @export var wait_close_hurry_interval: float = 1.0
 var is_open: bool = false
 var is_transitioning: bool = false
+var is_unlocked: bool = false
 
 func on_movement_initiated() -> MovementListenerComponent.MovementEffect:
 	if not is_open and not is_transitioning:
@@ -58,4 +62,17 @@ func _on_static_body_3d_input_event(_camera, event, _position, _normal, _shape_i
 	if opens_when_clicked and \
 		event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		# initiate door opening
-		open_door()
+		if needs_key_to_unlock:
+			if is_unlocked:
+				open_door()
+			else:
+				# try to unlock the door
+				var my_key := Stats.inventory.filter(func(item): return item.item_type == StatSystem.KEY_TYPE and item.item_name == key_name)
+				if my_key.size() > 0:
+					is_unlocked = true
+					Stats.remove_item(key_name, StatSystem.KEY_TYPE)
+					open_door()
+				else:
+					Globals.get_current_level().show_note(no_key_note)
+		else:
+			open_door()
