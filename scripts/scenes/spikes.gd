@@ -3,6 +3,9 @@ extends Node3D
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var grid_bound: GridBoundComponent = $GridBoundComponent
+@onready var cooldown_timer: Timer = $CooldownTimer
+
+@export var damage_strength: int = 10
 
 const activate_animation := "activate"
 const deactivate_animation := "deactivate"
@@ -16,6 +19,7 @@ var hurting: bool = false
 var time_elapsed := 0.0
 
 var player_on_it: bool = false
+var is_in_cooldown: bool = false
 
 func set_hurting():
 	hurting = true
@@ -25,8 +29,15 @@ func reset_hurting():
 	hurting = false
 
 func oops():
-	pass
+	if is_in_cooldown:
+		return
+	Stats.health -= damage_strength
+	is_in_cooldown = true
+	cooldown_timer.start()
 	#print("oohps")
+
+func cooldown_finished():
+	is_in_cooldown = false
 
 func on_movement_initiated():
 	if hurting:

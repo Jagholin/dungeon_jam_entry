@@ -106,3 +106,7 @@ is_an_obstacle = false
 libraries = {
 "": SubResource("AnimationLibrary_agqaq")
 }
+
+[node name="CooldownTimer" type="Timer" parent="." index="5"]
+
+[connection signal="timeout" from="CooldownTimer" to="." method="cooldown_finished"]
