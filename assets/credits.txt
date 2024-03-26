@@ -1,2 +1,11 @@
-https://3dtextures.me/
-https://oleekconder.itch.io/
+# 3rd party assets:
+
+textures from https://3dtextures.me/, under CC0 license(public domain).
+
+textures from https://oleekconder.itch.io/ by Oleksandr Martynenko, terms of license:
+> You CAN use it for commercial purposes.
+> You CAN NOT resell it, obviously. [https://itch.io/post/8388273] 
+
+key icon from game-icons.net, https://game-icons.net/1x1/lorc/key.html
+by Lorc under CC BY 3.0 license
+
