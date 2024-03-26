@@ -1,5 +1,245 @@
-[gd_scene load_steps=2 format=3 uid="uid://wnqksypssju4"]
+[gd_scene load_steps=16 format=3 uid="uid://wnqksypssju4"]
 
 [ext_resource type="PackedScene" uid="uid://bpsl1f7lltfy7" path="res://exports/door_3.gltf" id="1_kguto"]
+[ext_resource type="Script" path="res://scripts/scenes/door.gd" id="2_yr76x"]
+[ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="3_hoyrh"]
+[ext_resource type="Script" path="res://scripts/components/player_tracker.gd" id="4_r7ur4"]
+[ext_resource type="Script" path="res://scripts/components/movement_listener.gd" id="5_hpchf"]
 
-[node name="door_3" instance=ExtResource("1_kguto")]
+[sub_resource type="Animation" id="Animation_nr44o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../irondoor_001:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../keyhole:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.3487, 0.870051, -0.0556062)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../key:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.365601, 0.872766, 0.0584975)]
+}
+
+[sub_resource type="Animation" id="Animation_61fxf"]
+resource_name = "close_door"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../key:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.366, 2.573, 0.058), Vector3(-0.365601, 0.872766, 0.0584975)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../keyhole:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.349, 2.57, -0.056), Vector3(-0.3487, 0.870051, -0.0556062)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../irondoor_001:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.70035, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"door_is_closing"
+}, {
+"args": [],
+"method": &"door_has_closed"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_t7hdr"]
+resource_name = "open_door"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../irondoor_001:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.70035, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../keyhole:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.3487, 0.870051, -0.0556062), Vector3(-0.349, 2.57, -0.056)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../key:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.365601, 0.872766, 0.0584975), Vector3(-0.366, 2.573, 0.058)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"door_is_opening"
+}, {
+"args": [],
+"method": &"door_has_opened"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qx43a"]
+_data = {
+"RESET": SubResource("Animation_nr44o"),
+"close_door": SubResource("Animation_61fxf"),
+"open_door": SubResource("Animation_t7hdr")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wcjq1"]
+animation = &"close_door"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0yk8e"]
+animation = &"open_door"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0fqtv"]
+advance_mode = 2
+advance_condition = &"open"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ay3m2"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not self[\"parameters/conditions/open\"]"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_771u0"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"open"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oh6sb"]
+states/close_door/node = SubResource("AnimationNodeAnimation_wcjq1")
+states/close_door/position = Vector2(476, 156)
+states/open_door/node = SubResource("AnimationNodeAnimation_0yk8e")
+states/open_door/position = Vector2(476, 57)
+transitions = ["Start", "open_door", SubResource("AnimationNodeStateMachineTransition_0fqtv"), "open_door", "close_door", SubResource("AnimationNodeStateMachineTransition_ay3m2"), "close_door", "open_door", SubResource("AnimationNodeStateMachineTransition_771u0")]
+
+[node name="door_3" node_paths=PackedStringArray("grid_bound", "player_tracker", "animation_tree", "close_timer") instance=ExtResource("1_kguto")]
+script = ExtResource("2_yr76x")
+grid_bound = NodePath("GridBoundComponent")
+player_tracker = NodePath("PlayerTrackerComponent")
+animation_tree = NodePath("AnimationTree")
+close_timer = NodePath("CloseTimer")
+
+[node name="keyhole" parent="." index="3"]
+transform = Transform3D(-1, 0, -1.9315e-07, 0, 1, 0, 1.50996e-07, 0, -1.27917, -0.3487, 0.870051, -0.0556062)
+
+[node name="key" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.27917, -0.365601, 0.872766, 0.0584975)
+
+[node name="GridBoundComponent" type="Node3D" parent="." index="5"]
+script = ExtResource("3_hoyrh")
+on_the_wall = false
+
+[node name="PlayerTrackerComponent" type="Node3D" parent="." index="6" node_paths=PackedStringArray("movement_listener", "grid_bound")]
+script = ExtResource("4_r7ur4")
+movement_listener = NodePath("../MovementListenerComponent")
+grid_bound = NodePath("../GridBoundComponent")
+close_distance = 1
+
+[node name="MovementListenerComponent" type="Node3D" parent="." index="7" node_paths=PackedStringArray("grid_bound")]
+script = ExtResource("5_hpchf")
+grid_bound = NodePath("../GridBoundComponent")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+root_node = NodePath("../AnimationTree")
+libraries = {
+"": SubResource("AnimationLibrary_qx43a")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="9"]
+root_node = NodePath(".")
+libraries = {
+"": SubResource("AnimationLibrary_qx43a")
+}
+tree_root = SubResource("AnimationNodeStateMachine_oh6sb")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/open = false
+
+[node name="CloseTimer" type="Timer" parent="." index="10"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="input_event" from="irondoor_001/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="input_event" from="keyhole/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="input_event" from="key/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="timeout" from="CloseTimer" to="." method="attempt_close_door"]

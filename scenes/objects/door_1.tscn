@@ -1,5 +1,202 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqlo253qms8ga"]
+[gd_scene load_steps=16 format=3 uid="uid://cqlo253qms8ga"]
 
 [ext_resource type="PackedScene" uid="uid://ch6382e7b8vhl" path="res://exports/door_1.gltf" id="1_p7hpp"]
+[ext_resource type="Script" path="res://scripts/scenes/door.gd" id="2_wnqbj"]
+[ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="3_0ws8y"]
+[ext_resource type="Script" path="res://scripts/components/player_tracker.gd" id="4_ki3a1"]
+[ext_resource type="Script" path="res://scripts/components/movement_listener.gd" id="5_36ph5"]
 
-[node name="door_1" instance=ExtResource("1_p7hpp")]
+[sub_resource type="Animation" id="Animation_do6yt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wooddoor:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("keyhole:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t62u5"]
+resource_name = "close_door"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("keyhole:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wooddoor:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"door_is_closing"
+}, {
+"args": [],
+"method": &"door_has_closed"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_311l2"]
+resource_name = "open_door"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wooddoor:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("keyhole:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"door_is_opening"
+}, {
+"args": [],
+"method": &"door_has_opened"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3fji0"]
+_data = {
+"RESET": SubResource("Animation_do6yt"),
+"close_door": SubResource("Animation_t62u5"),
+"open_door": SubResource("Animation_311l2")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wcjq1"]
+animation = &"close_door"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0yk8e"]
+animation = &"open_door"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0fqtv"]
+advance_mode = 2
+advance_condition = &"open"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ay3m2"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not self[\"parameters/conditions/open\"]"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_771u0"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"open"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4ux5r"]
+states/close_door/node = SubResource("AnimationNodeAnimation_wcjq1")
+states/close_door/position = Vector2(476, 156)
+states/open_door/node = SubResource("AnimationNodeAnimation_0yk8e")
+states/open_door/position = Vector2(476, 57)
+transitions = ["Start", "open_door", SubResource("AnimationNodeStateMachineTransition_0fqtv"), "open_door", "close_door", SubResource("AnimationNodeStateMachineTransition_ay3m2"), "close_door", "open_door", SubResource("AnimationNodeStateMachineTransition_771u0")]
+
+[node name="door_1" node_paths=PackedStringArray("grid_bound", "player_tracker", "animation_tree", "close_timer") instance=ExtResource("1_p7hpp")]
+script = ExtResource("2_wnqbj")
+grid_bound = NodePath("GridBoundComponent")
+player_tracker = NodePath("PlayerTrackerComponent")
+animation_tree = NodePath("AnimationTree")
+close_timer = NodePath("CloseTimer")
+
+[node name="GridBoundComponent" type="Node3D" parent="." index="4"]
+script = ExtResource("3_0ws8y")
+on_the_wall = false
+
+[node name="PlayerTrackerComponent" type="Node3D" parent="." index="5" node_paths=PackedStringArray("movement_listener", "grid_bound")]
+script = ExtResource("4_ki3a1")
+movement_listener = NodePath("../MovementListenerComponent")
+grid_bound = NodePath("../GridBoundComponent")
+close_distance = 1
+
+[node name="MovementListenerComponent" type="Node3D" parent="." index="6" node_paths=PackedStringArray("grid_bound")]
+script = ExtResource("5_36ph5")
+grid_bound = NodePath("../GridBoundComponent")
+
+[node name="CloseTimer" type="Timer" parent="." index="7"]
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+libraries = {
+"": SubResource("AnimationLibrary_3fji0")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="9"]
+libraries = {
+"": SubResource("AnimationLibrary_3fji0")
+}
+tree_root = SubResource("AnimationNodeStateMachine_4ux5r")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/open = false
+
+[connection signal="input_event" from="doorarch/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="input_event" from="doorpillars/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="input_event" from="wooddoor/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="input_event" from="keyhole/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="timeout" from="CloseTimer" to="." method="attempt_close_door"]

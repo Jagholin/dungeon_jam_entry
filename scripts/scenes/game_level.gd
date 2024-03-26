@@ -42,7 +42,7 @@ func map_global_to_gridcoord(c: Vector3) -> Vector3i:
 	return grid_map.local_to_map(localGridTestPoint)
 
 
-func _on_buttons_pressed(value):
+func _on_buttons_pressed(_value):
 	pass
 	#print("You pressed the button with value, ", value)
 
