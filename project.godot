@@ -22,6 +22,7 @@ Obstacles="*res://scripts/systems/obstacle_system.gd"
 Grids="*res://scripts/systems/gridsystem.gd"
 PlayerTrackers="*res://scripts/systems/player_tracker_system.gd"
 Stats="*res://scripts/systems/stats_system.gd"
+NotableObjects="*res://scripts/systems/notable_objects_tracker.gd"
 
 [input]
 

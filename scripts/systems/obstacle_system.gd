@@ -8,11 +8,11 @@ func register_obstacle(obs: Vector3i):
 	obstacles.push_back(obs)
 
 func register_static_obstacle(obs: Vector3i):
-	print("adding static obs: ", obs)
+	#print("adding static obs: ", obs)
 	static_obstacles.push_back(obs)
 
 func unregister_obstacle(obs: Vector3i):
-	print("unregister obstacle at, ", obs)
+	#print("unregister obstacle at, ", obs)
 	obstacles.erase(obs)
 	static_obstacles.erase(obs)
 

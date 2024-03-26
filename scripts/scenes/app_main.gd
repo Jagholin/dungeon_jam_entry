@@ -50,6 +50,7 @@ func on_game_over():
 	Obstacles.force_clear()
 	Grids.force_clear()
 	PlayerTrackers.force_clear()
+	NotableObjects.force_clear()
 	level.queue_free()
 	ui_layer.show()
 

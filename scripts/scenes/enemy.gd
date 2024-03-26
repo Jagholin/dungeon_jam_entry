@@ -39,3 +39,6 @@ func _on_timer_timeout():
 		attempt_attack()
 	# elif result == AIMovementComponent.NO_PATH:
 		# print("No path :(")
+
+func on_attack():
+	queue_free()

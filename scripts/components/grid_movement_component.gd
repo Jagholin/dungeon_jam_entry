@@ -5,6 +5,7 @@ const GM_COMPONENT_NAME := &"GridMovementComponent"
 
 @export var animation_player: AnimationPlayer
 @export var step_sound_player: AudioStreamPlayer
+@export var notable_object: NotableObjectComponent
 # @export var level: Level
 @export var movement_listeners_can_interrupt: bool = false
 @export var warn_on_movement_listener_interruption: bool = false
@@ -46,6 +47,11 @@ func add_movement_listener(listener: MovementListenerComponent):
 func remove_movement_listener(listener: MovementListenerComponent):
 	movement_listeners.remove_at(movement_listeners.find(listener))
 
+func _notification(what):
+	if what == NOTIFICATION_EXIT_TREE:
+		Obstacles.unregister_obstacle(grid_coordinate)
+		Obstacles.unregister_obstacle(new_coordinates)
+
 ## this property is driven by the AnimationPlayer
 ## the starting value is always 0.0, the end value is 1.0 and indicates animation end
 ##
@@ -77,6 +83,8 @@ func apply_coordinates():
 		step_sound_player.play()
 	if movement_creates_obstacles:
 		Obstacles.register_static_obstacle(new_coordinates)
+	if notable_object:
+		notable_object.add_position(new_coordinates)
 	
 func apply_direction():
 	blend_value = 0.0
@@ -121,6 +129,8 @@ func _on_animation_player_animation_finished(anim_name):
 		assert(movement_state == WALKING_STATE)
 		if movement_creates_obstacles:
 			Obstacles.unregister_obstacle(grid_coordinate)
+		if notable_object:
+			notable_object.clear_position(grid_coordinate)
 		movement_state = IDLE_STATE
 		grid_coordinate = new_coordinates
 		blend_value = 0.0

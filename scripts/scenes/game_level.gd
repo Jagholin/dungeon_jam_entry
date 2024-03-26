@@ -15,6 +15,7 @@ var attack_tween: Tween = null
 func _input(event):
 	if event.is_action_pressed("attack"):
 		show_attack_indicator()
+		attempt_attack()
 
 func _ready():
 	Stats.health_changed.connect(on_health_changed)
@@ -26,8 +27,9 @@ func _ready():
 func after_ready():
 	Grids.initialize()
 	PlayerTrackers.initialize()
+	NotableObjects.initialize()
 	
-	get_tree().call_group("after_ready", "after_ready")
+	# get_tree().call_group("after_ready", "after_ready")
 
 func location_exists(c: Vector3i) -> bool:
 	return grid_map.get_cell_item(c) != -1
@@ -80,6 +82,17 @@ func show_attack_indicator():
 	attack_tween.tween_callback(func():
 		attack_indicator.hide()
 		attack_tween = null)
+
+func attempt_attack():
+	var character := Globals.get_character_controller()
+	var chr_pos := character.get_component(GridDirectionalComponent.GD_COMPONENT_NAME) as GridDirectionalComponent
+	var target := chr_pos.grid_coordinate + chr_pos.grid_direction
+
+	var target_obj := NotableObjects.get_object(target)
+	if target_obj and target_obj is Enemy:
+		target_obj.on_attack()
+	else:
+		show_note("No enemy to attack")
 
 func _on_player_trigger_info_enemy_player_entered():
 	show_note("Enemy encounter")
