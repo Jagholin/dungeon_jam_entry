@@ -26,6 +26,8 @@ func _ready():
 func after_ready():
 	Grids.initialize()
 	PlayerTrackers.initialize()
+	
+	get_tree().call_group("after_ready", "after_ready")
 
 func location_exists(c: Vector3i) -> bool:
 	return grid_map.get_cell_item(c) != -1

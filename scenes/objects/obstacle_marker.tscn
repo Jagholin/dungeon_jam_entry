@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpx0xloewshm7"]
+
+[ext_resource type="Script" path="res://scripts/scenes/obstacle_marker.gd" id="1_br23f"]
+[ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="2_6gw0w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hihy"]
+albedo_color = Color(0.278524, 0.66598, 0.809249, 1)
+
+[node name="ObstacleMarker" type="Node3D"]
+script = ExtResource("1_br23f")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+height = 1.005
+material = SubResource("StandardMaterial3D_2hihy")
+
+[node name="GridBoundComponent" type="Node3D" parent="."]
+script = ExtResource("2_6gw0w")
+on_the_wall = false

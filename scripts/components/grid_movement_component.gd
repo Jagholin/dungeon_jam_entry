@@ -132,7 +132,7 @@ func _on_animation_player_animation_finished(anim_name):
 	assert(false, "Unreachable location reached")
 
 func _move_to_destination(dest: Vector3i):
-	if Globals.get_current_level().is_a_wall(dest):
+	if Globals.get_current_level().is_a_wall(dest) or Obstacles.is_static_obstacle(dest):
 		new_coordinates = dest
 		apply_wall_bump()
 		return
