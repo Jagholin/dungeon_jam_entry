@@ -1,0 +1,43 @@
+[gd_scene load_steps=12 format=3 uid="uid://gsf5mdbcqvwm"]
+
+[ext_resource type="PackedScene" uid="uid://ui6fqls48p3v" path="res://exports/torch.gltf" id="1_godqv"]
+[ext_resource type="Texture2D" uid="uid://ctwbmdt7ap48p" path="res://exports/Dungeon2_Atlas_Albedo.png" id="2_xkwsp"]
+[ext_resource type="Texture2D" uid="uid://cx1pudrhap7t6" path="res://exports/Dungeon2_Atlas_Albedo_n.png" id="3_lm28i"]
+[ext_resource type="Texture2D" uid="uid://ck3rsoyfruly7" path="res://exports/Dungeon_Atlas_Albedo.png" id="4_bgkp3"]
+[ext_resource type="Texture2D" uid="uid://dcm4m13rnukxy" path="res://exports/Dungeon_Atlas_Albedo_n.png" id="5_s1x6l"]
+[ext_resource type="Shader" uid="uid://bevr5qwcq0wvd" path="res://scenes/shader/torch.tres" id="6_p7pno"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_whtn2"]
+albedo_texture = ExtResource("2_xkwsp")
+normal_enabled = true
+normal_texture = ExtResource("3_lm28i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vkg3"]
+albedo_texture = ExtResource("4_bgkp3")
+normal_enabled = true
+normal_texture = ExtResource("5_s1x6l")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3a8vp"]
+render_priority = 0
+shader = ExtResource("6_p7pno")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eq3vt"]
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7qaxm"]
+
+[node name="torch" instance=ExtResource("1_godqv")]
+
+[node name="Torch" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_whtn2")
+surface_material_override/1 = SubResource("StandardMaterial3D_6vkg3")
+
+[node name="fire-red" type="Node3D" parent="." index="1"]
+
+[node name="static_flame" type="GPUParticles3D" parent="fire-red" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0036, 0)
+material_override = SubResource("ShaderMaterial_3a8vp")
+amount = 1
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_eq3vt")
+draw_pass_1 = SubResource("QuadMesh_7qaxm")

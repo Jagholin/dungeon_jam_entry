@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dyie2r5ltp3gq" path="res://scenes/objects/spikes.tscn" id="9_k5sis"]
 [ext_resource type="PackedScene" uid="uid://cuapipgjafxq7" path="res://scenes/objects/key_placeholder.tscn" id="10_sumwo"]
 [ext_resource type="PackedScene" uid="uid://dya78d0ij4vx2" path="res://scenes/objects/buttons.tscn" id="11_lqyyn"]
-[ext_resource type="PackedScene" uid="uid://dpx0xloewshm7" path="res://scenes/objects/obstacle_marker.tscn" id="12_mb7uw"]
+[ext_resource type="PackedScene" path="res://scenes/objects/obstacle_marker.tscn" id="12_mb7uw"]
 [ext_resource type="PackedScene" uid="uid://ca0smol0uwp6y" path="res://scenes/objects/gameloop_impl/simon_says.tscn" id="13_5fjl4"]
 [ext_resource type="PackedScene" uid="uid://7wjwjrbjlvwf" path="res://scenes/objects/player_trigger.tscn" id="14_y3lop"]
 [ext_resource type="PackedScene" uid="uid://fqd2hfb535x0" path="res://scenes/objects/door_2.tscn" id="15_bx4su"]
