@@ -35,3 +35,6 @@ func _on_static_body_3d_input_event(_camera, event, _position, _normal, _shape_i
 		if not turned_on:
 			puzzle_ui.start_console()
 			turned_on = true
+
+func _on_final_puzzle_solution_correct():
+	set_active(true)

@@ -1,6 +1,7 @@
 class_name Enemy
 extends Node3D
 
+signal defeated
 @onready var movement: AIMovementComponent = $GridMovementComponent
 @export var attack_strength: int = 10
 
@@ -41,4 +42,5 @@ func _on_timer_timeout():
 		# print("No path :(")
 
 func on_attack():
+	defeated.emit()
 	queue_free()
