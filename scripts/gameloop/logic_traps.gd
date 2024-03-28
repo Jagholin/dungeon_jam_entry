@@ -27,8 +27,10 @@ func _ready():
 
 func lever_switched(lever_id: int):
 	var actions := [switch_actions_0, switch_actions_1, switch_actions_2, switch_actions_3]
+	print("lever {0} switched".format([lever_id]))
 	var action := actions[lever_id] as Array[bool]
 	for i in range(action.size()):
 		if action[i]:
+			print("toggle trap, {0}".format([i]))
 			traps[i].toggle()
 

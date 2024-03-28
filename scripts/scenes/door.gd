@@ -7,6 +7,7 @@ extends Node3D
 @export var needs_key_to_unlock: bool = false
 @export var key_name: String
 @export var no_key_note: String = "You need a key to unlock this door"
+@export var needs_lever_to_unlock: bool = false
 @export_group("Internal")
 @export var grid_bound: GridBoundComponent
 @export var player_tracker: PlayerTrackerComponent
@@ -56,12 +57,22 @@ func open_door():
 func close_door():
 	animation_tree["parameters/conditions/open"] = false
 
+func unlock_door():
+	is_unlocked = true
+	open_door()
+
 func _on_static_body_3d_input_event(_camera, event, _position, _normal, _shape_idx):
 	if not player_tracker.player_is_close:
 		return
 	if opens_when_clicked and \
 		event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		# initiate door opening
+		if needs_lever_to_unlock:
+			if is_unlocked:
+				open_door()
+			else:
+				Globals.get_current_level().show_note(no_key_note)
+			return
 		if needs_key_to_unlock:
 			if is_unlocked:
 				open_door()

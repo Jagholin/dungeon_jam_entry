@@ -30,3 +30,15 @@ func _process(delta):
 			else:
 				s.apply_hidden()
 	previous_phase = phase
+
+func _on_red_entered_trigger_player_entered():
+	show_note("[ZONE: RED]")
+
+func _on_green_entered_trigger_player_entered():
+	show_note("[ZONE: GREEN]")
+
+func _on_blue_entered_trigger_player_entered():
+	show_note("[ZONE: BLUE]")
+
+func _on_lever_green_solved_switched_on():
+	show_note("Green component: 122379")

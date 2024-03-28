@@ -94,10 +94,10 @@ _data = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e5nvw"]
-animation = &"lever_movements/switch_off"
+animation = &"switch_off"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r8oif"]
-animation = &"lever_movements/switch_on"
+animation = &"switch_on"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ham2"]
 advance_mode = 2

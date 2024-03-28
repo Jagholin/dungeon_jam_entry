@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://2gu4umricmwc"]
 
 [ext_resource type="Script" path="res://scripts/scenes/app_main.gd" id="1_qbgvk"]
-[ext_resource type="PackedScene" uid="uid://dkwm4iptiyfsc" path="res://scenes/game_level-jacklyn.tscn" id="2_e7qee"]
+[ext_resource type="PackedScene" uid="uid://dkwm4iptiyfsc" path="res://scenes/game_level.tscn" id="2_e7qee"]
 [ext_resource type="PackedScene" uid="uid://caq0aouuikchc" path="res://scenes/test_level.tscn" id="2_hnbt3"]
 [ext_resource type="PackedScene" uid="uid://b7a0bbxbdohnb" path="res://scenes/ui/pause_menu.tscn" id="3_u47db"]
 
