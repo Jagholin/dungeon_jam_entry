@@ -1,7 +1,6 @@
 class_name KeyItem
 extends Node3D
 
-@onready var physics_body: StaticBody3D = $key/StaticBody3D
 @onready var grid_bound: GridBoundComponent = $GridBoundComponent
 @onready var player_tracker: PlayerTrackerComponent = $PlayerTrackerComponent
 

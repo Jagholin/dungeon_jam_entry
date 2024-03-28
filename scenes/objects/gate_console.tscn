@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnjgs6w64aou5"]
+
+[ext_resource type="PackedScene" uid="uid://tn20juktlbis" path="res://exports/gate_console.gltf" id="1_hq65c"]
+[ext_resource type="Script" path="res://scripts/scenes/gate_console.gd" id="2_sevt1"]
+[ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="3_ma50c"]
+[ext_resource type="Script" path="res://scripts/components/player_tracker.gd" id="4_kjhyh"]
+[ext_resource type="PackedScene" uid="uid://cpqssbclasry1" path="res://scenes/objects/gameloop_impl/final_puzzle.tscn" id="5_6e4tj"]
+
+[node name="gate_console" instance=ExtResource("1_hq65c")]
+script = ExtResource("2_sevt1")
+
+[node name="GridBoundComponent" type="Node3D" parent="." index="4"]
+script = ExtResource("3_ma50c")
+on_the_wall = false
+on_the_floor = true
+
+[node name="PlayerTrackerComponent" type="Node3D" parent="." index="5" node_paths=PackedStringArray("grid_bound")]
+script = ExtResource("4_kjhyh")
+grid_bound = NodePath("../GridBoundComponent")
+close_distance = 1
+
+[node name="UILayer" type="CanvasLayer" parent="." index="6"]
+visible = false
+
+[node name="CenterContainer" type="CenterContainer" parent="UILayer" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FinalPuzzle" parent="UILayer/CenterContainer" index="0" instance=ExtResource("5_6e4tj")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="input_event" from="console/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
