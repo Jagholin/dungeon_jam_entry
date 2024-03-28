@@ -34,8 +34,8 @@ func activate_input():
 	input_box.show()
 
 func _on_confirm_pressed():
-	input_sol.text = ""
 	if input_sol.text.to_int() == solution:
 		solution_correct.emit()
 	else:
 		solution_false.emit()
+	input_sol.text = ""
