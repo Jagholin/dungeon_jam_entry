@@ -6,6 +6,7 @@ extends Node3D
 @onready var cooldown_timer: Timer = $CooldownTimer
 
 @export var damage_strength: int = 10
+@export var automatic_activation: bool = true
 
 const activate_animation := "activate"
 const deactivate_animation := "deactivate"
@@ -42,19 +43,19 @@ func cooldown_finished():
 func on_movement_initiated():
 	if hurting:
 		oops()
-	elif state == HIDDEN_STATE:
+	elif state == HIDDEN_STATE and automatic_activation:
 		var t := create_tween()
 		t.tween_interval(0.76)
 		t.tween_callback(apply_active)
 	return MovementListenerComponent.MovementEffect.NONE
 		
 func apply_active():
-	assert(state == HIDDEN_STATE)
+	#assert(state == HIDDEN_STATE)
 	state = ACTIVE_STATE
 	anim_player.play(activate_animation)
 
 func apply_hidden():
-	assert(state == ACTIVE_STATE)
+	#assert(state == ACTIVE_STATE)
 	state = HIDDEN_STATE
 	anim_player.play(deactivate_animation)
 
@@ -69,7 +70,7 @@ func on_character_coordinate_changed(c: Vector3i):
 func _process(delta):
 	if hurting and player_on_it:
 		oops()
-	if state == ACTIVE_STATE:
+	if state == ACTIVE_STATE and automatic_activation:
 		if player_on_it:
 			time_elapsed = 0
 		
