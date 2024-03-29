@@ -1,6 +1,8 @@
 class_name FirstLevel
 extends Level
 
+# Starting time remaining in seconds
+@export var start_time: int = 60 * 1
 @export var spikes_a: Array[Spikes]
 @export var spikes_b: Array[Spikes]
 @export var spikes_c: Array[Spikes]
@@ -9,9 +11,17 @@ extends Level
 
 @onready var enemy_bar: ProgressBar = %EnemyHPBar
 @onready var enemy_title: Label = %EnemyTitle
+@onready var time_bar: ProgressBar = %TimeBar
+@onready var time_label: Label = %TimeRemaining
 
 var seconds_passed: float = 0.0
 var previous_phase: int = 0
+var time_left: int = start_time:
+	set(value):
+		if value == time_left:
+			return
+		time_left = value
+		time_bar.value = time_left
 
 var red_decoded: bool
 var green_decoded: bool
@@ -23,12 +33,15 @@ func _ready():
 	super._ready()
 	enemy_bar.hide()
 	enemy_title.hide()
+	time_bar.max_value = start_time
 
 	NotableObjects.on_new_object_registered.connect(_on_enemy_moved_or_spawned)
 
 func _process(delta):
 	#super._process(delta)
 	seconds_passed += delta
+
+	time_left = start_time - floori(seconds_passed)
 	
 	var phase: int = floori(seconds_passed) % 3
 	if phase != previous_phase:
