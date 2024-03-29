@@ -7,12 +7,24 @@ extends Level
 
 @onready var solution_components: Label = %SolutionComponents
 
+@onready var enemy_bar: ProgressBar = %EnemyHPBar
+@onready var enemy_title: Label = %EnemyTitle
+
 var seconds_passed: float = 0.0
 var previous_phase: int = 0
 
 var red_decoded: bool
 var green_decoded: bool
 var blue_decoded: bool
+
+var enemy: Enemy
+
+func _ready():
+	super._ready()
+	enemy_bar.hide()
+	enemy_title.hide()
+
+	NotableObjects.on_new_object_registered.connect(_on_enemy_moved_or_spawned)
 
 func _process(delta):
 	#super._process(delta)
@@ -65,3 +77,25 @@ func _on_simon_says_success():
 		return
 	solution_components.text += "RED: 358980\n"
 	red_decoded = true
+
+func _on_enemy_moved_or_spawned(obj: Object, _coord: Vector3i):
+	if obj is Enemy:
+		if enemy == obj:
+			return
+		enemy = obj
+		enemy.player_is_close.connect(_on_player_close_to_enemy)
+		enemy.player_is_far.connect(_on_player_far_from_enemy)
+		enemy.health_changed.connect(_on_enemy_health_changed)
+		enemy.defeated.connect(_on_player_far_from_enemy)
+
+func _on_player_close_to_enemy():
+	enemy_bar.show()
+	enemy_title.show()
+	enemy_bar.value = enemy._health
+
+func _on_player_far_from_enemy():
+	enemy_bar.hide()
+	enemy_title.hide()
+
+func _on_enemy_health_changed():
+	enemy_bar.value = enemy._health
