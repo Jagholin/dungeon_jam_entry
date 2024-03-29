@@ -13,6 +13,7 @@ extends Level
 @onready var enemy_title: Label = %EnemyTitle
 @onready var time_bar: ProgressBar = %TimeBar
 @onready var time_label: Label = %TimeRemaining
+@onready var text_note_container: PanelContainer = %TextNoteContainer
 
 @onready var gate_console: GateConsole = %gate_console
 
@@ -35,6 +36,11 @@ var green_decoded: bool
 var blue_decoded: bool
 
 var enemy: Enemy
+
+func _input(event):
+	super._input(event)
+	if event.is_action_pressed("info"):
+		text_note_container.show()
 
 func _ready():
 	super._ready()
@@ -141,3 +147,6 @@ func _on_trigger_win_condition_player_entered():
 		# +1 score for each second remaining
 		score += time_left
 		game_won.emit(score)
+
+func _on_text_note_close_btn_pressed():
+	text_note_container.hide()
