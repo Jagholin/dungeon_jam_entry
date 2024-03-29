@@ -1,7 +1,8 @@
 class_name Level
 extends Node3D
 
-signal game_over()
+signal game_over(reason: String)
+signal game_won(score: int)
 
 @export var grid_map: GridMap
 var mesh_library: MeshLibrary
@@ -63,7 +64,7 @@ func _on_simon_says_success():
 func on_health_changed():
 	if Stats.health <= 0:
 		print("Game Over")
-		game_over.emit()
+		game_over.emit("Health dropped to 0")
 		return
 	hp_bar.value = Stats.health
 	hp_bar.max_value = Stats.max_health
