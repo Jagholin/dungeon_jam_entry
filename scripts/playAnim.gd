@@ -1,4 +1,4 @@
- extends n
+extends Node3D
 
 @onready var anim = $AnimatedSprite3D
 

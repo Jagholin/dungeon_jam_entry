@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyie2r5ltp3gq"]
+[gd_scene load_steps=10 format=3 uid="uid://dyie2r5ltp3gq"]
 
 [ext_resource type="PackedScene" uid="uid://bmyvdoleiwhwg" path="res://exports/spikes.gltf" id="1_vha4p"]
 [ext_resource type="Script" path="res://scripts/scenes/spikes.gd" id="2_fnnwo"]
 [ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="3_meuld"]
 [ext_resource type="Script" path="res://scripts/components/movement_listener.gd" id="4_ytjs7"]
+[ext_resource type="AudioStream" uid="uid://b2mof3y25ir2u" path="res://exports/sounds/spike_stab.wav" id="5_0432a"]
 
 [sub_resource type="Animation" id="Animation_qt0b1"]
 length = 0.001
@@ -47,6 +48,20 @@ tracks/1/keys = {
 "values": [{
 "args": [],
 "method": &"set_hurting"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
 }]
 }
 
@@ -108,5 +123,11 @@ libraries = {
 }
 
 [node name="CooldownTimer" type="Timer" parent="." index="5"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="6"]
+stream = ExtResource("5_0432a")
+attenuation_model = 1
+volume_db = -16.045
+bus = &"Environment"
 
 [connection signal="timeout" from="CooldownTimer" to="." method="cooldown_finished"]

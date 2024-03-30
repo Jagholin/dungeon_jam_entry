@@ -16,6 +16,7 @@ extends Level
 @onready var text_note_container: PanelContainer = %TextNoteContainer
 
 @onready var gate_console: GateConsole = %gate_console
+@onready var bkg_audio: AudioStreamPlayer = $AudioStreamPlayer
 
 var seconds_passed: float = 0.0
 var previous_phase: int = 0
@@ -150,3 +151,6 @@ func _on_trigger_win_condition_player_entered():
 
 func _on_text_note_close_btn_pressed():
 	text_note_container.hide()
+
+func _on_audio_stream_player_finished():
+	bkg_audio.play()

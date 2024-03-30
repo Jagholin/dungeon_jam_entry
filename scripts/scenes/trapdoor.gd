@@ -6,10 +6,10 @@ extends Node3D
 @export_group("Internals")
 @export var animation_tree: AnimationTree
 @export var player_tracker: PlayerTrackerComponent
+@export var audio_player: AudioStreamPlayer3D
 
 var is_transitioning: bool = false
 var is_now_open: bool = false
-
 var anim_started_was_called: bool = false
 
 func open():
@@ -35,6 +35,7 @@ func _on_animation_tree_animation_started(anim_name):
 	if anim_started_was_called:
 		return
 	anim_started_was_called = true
+	audio_player.play()
 	
 	if anim_name == "open_doors":
 		is_transitioning = true

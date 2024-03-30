@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqlo253qms8ga"]
+[gd_scene load_steps=17 format=3 uid="uid://cqlo253qms8ga"]
 
 [ext_resource type="PackedScene" uid="uid://ch6382e7b8vhl" path="res://exports/door_1.gltf" id="1_p7hpp"]
 [ext_resource type="Script" path="res://scripts/scenes/door.gd" id="2_wnqbj"]
 [ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="3_0ws8y"]
 [ext_resource type="Script" path="res://scripts/components/player_tracker.gd" id="4_ki3a1"]
 [ext_resource type="Script" path="res://scripts/components/movement_listener.gd" id="5_36ph5"]
+[ext_resource type="AudioStream" uid="uid://cecq3dxwqke1u" path="res://exports/sounds/Door_Open.wav" id="6_ew26l"]
 
 [sub_resource type="Animation" id="Animation_do6yt"]
 length = 0.001
@@ -77,6 +78,20 @@ tracks/2/keys = {
 "method": &"door_has_closed"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_311l2"]
 resource_name = "open_door"
@@ -120,6 +135,20 @@ tracks/2/keys = {
 }, {
 "args": [],
 "method": &"door_has_opened"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
 }]
 }
 
@@ -194,6 +223,10 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_4ux5r")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/open = false
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+stream = ExtResource("6_ew26l")
 
 [connection signal="input_event" from="doorarch/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
 [connection signal="input_event" from="doorpillars/StaticBody3D" to="." method="_on_static_body_3d_input_event"]

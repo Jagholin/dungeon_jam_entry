@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cb3vsk6l10w6i"]
+[gd_scene load_steps=16 format=3 uid="uid://cb3vsk6l10w6i"]
 
 [ext_resource type="PackedScene" uid="uid://bed1bjrscq4bc" path="res://exports/trapdoor.gltf" id="1_7644u"]
 [ext_resource type="Script" path="res://scripts/scenes/trapdoor.gd" id="2_wulbb"]
 [ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="3_i7pig"]
 [ext_resource type="Script" path="res://scripts/components/player_tracker.gd" id="4_q6xw5"]
+[ext_resource type="AudioStream" uid="uid://duuguy5v1nleq" path="res://exports/sounds/trap_dooropen.wav" id="5_l1x6l"]
 
 [sub_resource type="Animation" id="Animation_wbusj"]
 resource_name = "close_doors"
@@ -78,10 +79,11 @@ states/open_doors/node = SubResource("AnimationNodeAnimation_ifjrl")
 states/open_doors/position = Vector2(510, 58)
 transitions = ["Start", "open_doors", SubResource("AnimationNodeStateMachineTransition_yla8s"), "Start", "close_doors", SubResource("AnimationNodeStateMachineTransition_hymnk"), "open_doors", "close_doors", SubResource("AnimationNodeStateMachineTransition_h155y"), "close_doors", "open_doors", SubResource("AnimationNodeStateMachineTransition_w0mxl")]
 
-[node name="trapdoor" node_paths=PackedStringArray("animation_tree", "player_tracker") instance=ExtResource("1_7644u")]
+[node name="trapdoor" node_paths=PackedStringArray("animation_tree", "player_tracker", "audio_player") instance=ExtResource("1_7644u")]
 script = ExtResource("2_wulbb")
 animation_tree = NodePath("AnimationTree")
 player_tracker = NodePath("PlayerTrackerComponent")
+audio_player = NodePath("AudioStreamPlayer3D")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/1/rotation = Quaternion(9.9748e-08, -9.9748e-08, 0.707107, 0.707107)
@@ -105,6 +107,11 @@ on_the_floor = true
 [node name="PlayerTrackerComponent" type="Node3D" parent="." index="4" node_paths=PackedStringArray("grid_bound")]
 script = ExtResource("4_q6xw5")
 grid_bound = NodePath("../GridBoundComponent")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.430726, 0)
+stream = ExtResource("5_l1x6l")
+bus = &"Environment"
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]
