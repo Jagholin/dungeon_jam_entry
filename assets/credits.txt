@@ -9,6 +9,10 @@ textures from https://oleekconder.itch.io/ by Oleksandr Martynenko, terms of lic
 key icon from game-icons.net, https://game-icons.net/1x1/lorc/key.html
 by Lorc under CC BY 3.0 license
 
+footsteps sound from https://pixabay.com/sound-effects/concrete-footsteps-1-6265/ by Pixabay, distributed under pixabay content license
+
+Other assets from:
+
 https://freesound.org/people/pagancow/sounds/15419/
 Creative Commons 0
 

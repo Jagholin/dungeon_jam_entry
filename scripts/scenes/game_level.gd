@@ -9,15 +9,20 @@ var mesh_library: MeshLibrary
 @onready var hp_bar: ProgressBar = %HPBar
 @onready var notification_label: Label = %NotificationLabel
 @onready var attack_indicator: TextureRect = %AttackIndicator
+@onready var cooldown_progress: ProgressBar = %CDProgressBar
 @onready var inventory_list: VBoxContainer = %InventoryList
 
 var key_ui_scene = preload("res://scenes/ui/key_item.tscn")
 
 var notify_tween: Tween = null
+var attack_on_cooldown: bool = false
 var attack_tween: Tween = null
 
 func _input(event):
 	if event.is_action_pressed("attack"):
+		if attack_on_cooldown:
+			show_note("Attack on cooldown")
+			return
 		show_attack_indicator()
 		attempt_attack()
 
@@ -100,6 +105,7 @@ func show_attack_indicator():
 		attack_tween = null)
 
 func attempt_attack():
+	attack_on_cooldown = true
 	var character := Globals.get_character_controller()
 	var chr_pos := character.get_component(GridDirectionalComponent.GD_COMPONENT_NAME) as GridDirectionalComponent
 	var target := chr_pos.grid_coordinate + chr_pos.grid_direction
@@ -107,8 +113,15 @@ func attempt_attack():
 	var target_obj := NotableObjects.get_object(target)
 	if target_obj and target_obj is Enemy:
 		target_obj.on_attack()
-	else:
-		show_note("No enemy to attack")
+	#else:
+	#	show_note("No enemy to attack")
+	cooldown_progress.value = 0
+	cooldown_progress.show()
+	var cdTween := create_tween()
+	cdTween.tween_property(cooldown_progress, "value", 100, 1.5)
+	cdTween.tween_callback(func():
+		attack_on_cooldown = false
+		cooldown_progress.hide())
 
 func _on_player_trigger_info_enemy_player_entered():
 	show_note("Enemy encounter")
