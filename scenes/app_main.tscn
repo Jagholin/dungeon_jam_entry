@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://2gu4umricmwc"]
+[gd_scene load_steps=6 format=3 uid="uid://2gu4umricmwc"]
 
 [ext_resource type="Script" path="res://scripts/scenes/app_main.gd" id="1_qbgvk"]
 [ext_resource type="PackedScene" uid="uid://dkwm4iptiyfsc" path="res://scenes/game_level.tscn" id="3_0r75p"]
 [ext_resource type="PackedScene" uid="uid://b7a0bbxbdohnb" path="res://scenes/ui/pause_menu.tscn" id="3_u47db"]
+[ext_resource type="Theme" uid="uid://c6uahpeuppr8b" path="res://resources/theme/main_theme.tres" id="3_yb178"]
 [ext_resource type="AudioStream" uid="uid://dycj11ibip428" path="res://scenes/music/ND_Ambient_3_Eternal_Main.mp3" id="4_urws2"]
 
 [node name="Node3D" type="Node3D" node_paths=PackedStringArray("ui_layer", "pause_layer", "game_finished_layer") groups=["app"]]
@@ -36,22 +37,27 @@ layout_mode = 2
 
 [node name="StartTestLevelButton" type="Button" parent="UILayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_yb178")
 text = "Start test level"
 
 [node name="StartButton" type="Button" parent="UILayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_yb178")
 text = "Start"
 
 [node name="SettingsButton" type="Button" parent="UILayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_yb178")
 text = "Settings"
 
 [node name="CreditsButton" type="Button" parent="UILayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_yb178")
 text = "Credits"
 
 [node name="ExitButton" type="Button" parent="UILayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_yb178")
 text = "Quit"
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
@@ -116,5 +122,6 @@ autoplay = true
 [connection signal="exit_to_menu" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_exit_to_menu"]
 [connection signal="quit" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_quit"]
 [connection signal="resume" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_resume"]
+[connection signal="settings" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_settings"]
 [connection signal="pressed" from="GameFinishedScreen/CenterContainer/VBoxContainer/gamefinished_back_button" to="." method="_on_gamefinished_back_button_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

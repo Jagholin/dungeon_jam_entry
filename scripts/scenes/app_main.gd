@@ -90,12 +90,21 @@ func _on_pause_menu_exit_to_menu():
 	stop_game()
 	ui_layer.show()
 
+func _on_pause_menu_settings():
+	pause_layer.hide()
+	var settings := settings_scene.instantiate() as SettingsWindow
+	settings.close.connect(_on_settings_close)
+	add_child(settings)
+
 func _on_gamefinished_back_button_pressed():
 	game_finished_layer.hide()
 	ui_layer.show()
 
 func _on_settings_close():
-	ui_layer.show()
+	if is_game_running:
+		pause_layer.show()
+	else:
+		ui_layer.show()
 
 func _on_settings_button_pressed():
 	var settings := settings_scene.instantiate() as SettingsWindow

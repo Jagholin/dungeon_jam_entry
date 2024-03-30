@@ -11,6 +11,8 @@ by Lorc under CC BY 3.0 license
 
 footsteps sound from https://pixabay.com/sound-effects/concrete-footsteps-1-6265/ by Pixabay, distributed under pixabay content license
 
+UI elements from https://mounirtohami.itch.io/pixel-art-gui-elements, free to use for any purpose
+
 Other assets from:
 
 https://freesound.org/people/pagancow/sounds/15419/

@@ -29,6 +29,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Resume"
 
+[node name="SettingsBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
 [node name="MainMenuBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Exit to menu"
@@ -38,5 +42,6 @@ layout_mode = 2
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
