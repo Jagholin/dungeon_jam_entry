@@ -43,6 +43,7 @@ script = ExtResource("7_jqcls")
 animation_player = NodePath("../AnimationPlayer")
 step_sound_player = NodePath("../StepSoundsPlayer")
 movement_listeners_can_interrupt = true
+immediate_movement_applies = true
 on_the_wall = false
 
 [node name="CameraSwapTimer" type="Timer" parent="."]

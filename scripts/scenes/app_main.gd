@@ -7,6 +7,8 @@ extends Node3D
 @export var game_level: PackedScene
 @export var test_level: PackedScene
 
+@onready var settings_scene = preload("res://scenes/ui/settings.tscn")
+
 @onready var result_label: Label = %ResultLabel
 @onready var score_container: HBoxContainer = %ScoreContainer
 @onready var score_label: Label = %ScoreLabel
@@ -82,7 +84,17 @@ func _on_pause_menu_exit_to_menu():
 	get_tree().paused = false
 	pause_layer.hide()
 	stop_game()
+	ui_layer.show()
 
 func _on_gamefinished_back_button_pressed():
 	game_finished_layer.hide()
 	ui_layer.show()
+
+func _on_settings_close():
+	ui_layer.show()
+
+func _on_settings_button_pressed():
+	var settings := settings_scene.instantiate() as SettingsWindow
+	settings.close.connect(_on_settings_close)
+	ui_layer.hide()
+	add_child(settings)

@@ -15,6 +15,7 @@ signal rotation_finished
 @export var movement_listeners_can_interrupt: bool = false
 @export var warn_on_movement_listener_interruption: bool = false
 @export var movement_creates_obstacles: bool = false
+@export var immediate_movement_applies: bool = false
 
 func get_component_name() -> StringName:
 	return GM_COMPONENT_NAME
@@ -83,7 +84,11 @@ func _notification(what):
 func apply_coordinates():
 	blend_value = 0.0
 	movement_state = WALKING_STATE
-	animation_player.play(walk_animation_name)
+	var movement_is_immediate := immediate_movement_applies and Grids.immediate_movement
+
+	if not movement_is_immediate:
+		animation_player.play(walk_animation_name)
+
 	if step_sound_player:
 		step_sound_player.play()
 	if movement_creates_obstacles:
@@ -91,14 +96,26 @@ func apply_coordinates():
 	if notable_object:
 		notable_object.add_position(new_coordinates)
 	movement_started.emit()
+
+	if movement_is_immediate:
+		blend_value = 1.0
+		_on_animation_player_animation_finished(walk_animation_name)
 	
 func apply_direction():
 	blend_value = 0.0
 	movement_state = TURNING_STATE
-	animation_player.play(turn_animation_name)
+	var movement_is_immediate := immediate_movement_applies and Grids.immediate_movement
+
+	if not movement_is_immediate:
+		animation_player.play(turn_animation_name)
+
 	if step_sound_player:
 		step_sound_player.play()
 	rotation_started.emit()
+
+	if movement_is_immediate:
+		blend_value = 1.0
+		_on_animation_player_animation_finished(turn_animation_name)
 
 func apply_wall_bump():
 	blend_value = 0.0
