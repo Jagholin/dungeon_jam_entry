@@ -60,7 +60,6 @@ grid_map = NodePath("GridMap")
 environment = SubResource("Environment_avsoa")
 
 [node name="HUDLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="HUDLayer"]
 anchors_preset = 15

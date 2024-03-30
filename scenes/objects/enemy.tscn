@@ -118,7 +118,7 @@ grid_bound = NodePath("../GridMovementComponent")
 [node name="PlayerTrackerComponent" type="Node3D" parent="." node_paths=PackedStringArray("grid_bound")]
 script = ExtResource("4_qoaw3")
 grid_bound = NodePath("../GridMovementComponent")
-close_distance = 10
+close_distance = 5
 
 [node name="enemy_black" parent="." instance=ExtResource("5_och8s")]
 transform = Transform3D(-0.4, 0, 6.03983e-08, 0, 0.4, 0, -6.03983e-08, 0, -0.4, 0, 0, 0)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://2gu4umricmwc"]
+[gd_scene load_steps=7 format=3 uid="uid://2gu4umricmwc"]
 
 [ext_resource type="Script" path="res://scripts/scenes/app_main.gd" id="1_qbgvk"]
 [ext_resource type="PackedScene" uid="uid://dkwm4iptiyfsc" path="res://scenes/game_level.tscn" id="3_0r75p"]
+[ext_resource type="Texture2D" uid="uid://fxet17kowvfu" path="res://exports/images/bkg.png" id="3_oib3a"]
 [ext_resource type="PackedScene" uid="uid://b7a0bbxbdohnb" path="res://scenes/ui/pause_menu.tscn" id="3_u47db"]
 [ext_resource type="Theme" uid="uid://c6uahpeuppr8b" path="res://resources/theme/main_theme.tres" id="3_yb178"]
 [ext_resource type="AudioStream" uid="uid://dycj11ibip428" path="res://scenes/music/ND_Ambient_3_Eternal_Main.mp3" id="4_urws2"]
@@ -24,6 +25,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.266667, 0.278431, 0.341176, 1)
+
+[node name="Bkg" type="TextureRect" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_oib3a")
+expand_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="UILayer"]
 anchors_preset = 15
