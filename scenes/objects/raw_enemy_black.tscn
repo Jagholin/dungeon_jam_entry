@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://drq7hgvxscaqd"]
+
+[ext_resource type="PackedScene" uid="uid://wcxdv8qtltkn" path="res://exports/ENEMY/enemy_black.gltf" id="1_tf1up"]
+[ext_resource type="Script" path="res://scripts/scenes/raw_enemy_black.gd" id="2_bk1dg"]
+
+[node name="enemy_black" instance=ExtResource("1_tf1up")]
+script = ExtResource("2_bk1dg")
+
+[node name="Skeleton3D" parent="EnemyArmature" index="0"]
+bones/1/rotation = Quaternion(1, 0, -7.54979e-08, -1.54651e-07)
+bones/3/rotation = Quaternion(1, 0, -7.54979e-08, -1.54651e-07)
+bones/5/position = Vector3(-1.35591e-20, 1.462, 1.74595e-10)
+bones/5/rotation = Quaternion(0, 1.19209e-07, 0, 1)
+bones/6/position = Vector3(-2.13019e-07, 1.39334, 0.91021)
+bones/8/position = Vector3(0.893871, 1.68407, 4.55327e-07)
+bones/8/rotation = Quaternion(8.43e-09, 1.53248e-07, -0.99571, 0.0925312)
+bones/10/position = Vector3(-0.893871, 1.68407, 3.65467e-08)
+bones/10/rotation = Quaternion(-2.28966e-07, -1.75309e-07, 0.99571, 0.0925312)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

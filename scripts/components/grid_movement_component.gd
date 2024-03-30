@@ -3,6 +3,11 @@ extends GridDirectionalComponent
 
 const GM_COMPONENT_NAME := &"GridMovementComponent"
 
+signal movement_started
+signal movement_finished
+signal rotation_started
+signal rotation_finished
+
 @export var animation_player: AnimationPlayer
 @export var step_sound_player: AudioStreamPlayer
 @export var notable_object: NotableObjectComponent
@@ -85,6 +90,7 @@ func apply_coordinates():
 		Obstacles.register_static_obstacle(new_coordinates)
 	if notable_object:
 		notable_object.add_position(new_coordinates)
+	movement_started.emit()
 	
 func apply_direction():
 	blend_value = 0.0
@@ -92,6 +98,7 @@ func apply_direction():
 	animation_player.play(turn_animation_name)
 	if step_sound_player:
 		step_sound_player.play()
+	rotation_started.emit()
 
 func apply_wall_bump():
 	blend_value = 0.0
@@ -134,6 +141,7 @@ func _on_animation_player_animation_finished(anim_name):
 		grid_coordinate = new_coordinates
 		blend_value = 0.0
 		target.position = target.coord_to_position(new_coordinates)
+		movement_finished.emit()
 		return
 	elif anim_name == turn_animation_name:
 		assert(movement_state == TURNING_STATE)
@@ -141,6 +149,7 @@ func _on_animation_player_animation_finished(anim_name):
 		grid_direction = new_direction
 		blend_value = 0.0
 		target.rotation = target.dir_to_rotation(new_direction)
+		rotation_finished.emit()
 		return
 	elif anim_name == wall_animation_name:
 		assert(movement_state == WALL_BUMP_STATE)

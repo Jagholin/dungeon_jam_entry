@@ -7,6 +7,7 @@ signal player_is_close
 signal player_is_far
 
 @onready var movement: AIMovementComponent = $GridMovementComponent
+@onready var entity: RawEnemyBlack = $enemy_black
 @export var attack_strength: int = 10
 @export var max_health: int = 100
 var _health: int:
@@ -39,6 +40,9 @@ func _ready():
 	_health = max_health
 
 func attempt_attack():
+	entity.start_attack_anim()
+
+func attempt_hit():
 	var cmp := Globals.get_character_controller().get_component(GridBoundComponent.GB_COMPONENT_NAME) as GridBoundComponent
 	var goal := cmp.grid_coordinate
 
@@ -63,3 +67,15 @@ func on_player_is_close():
 
 func on_player_is_far():
 	player_is_far.emit()
+
+func _on_grid_movement_component_movement_started():
+	entity.start_walking_anim()
+
+func _on_grid_movement_component_movement_finished():
+	entity.finish_walking_anim()
+
+func _on_grid_movement_component_rotation_started():
+	entity.start_walking_anim()
+
+func _on_grid_movement_component_rotation_finished():
+	entity.finish_walking_anim()
