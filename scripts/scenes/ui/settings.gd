@@ -51,7 +51,7 @@ func _ready():
 		action_names[action].btn.pressed.connect(_on_action_button_pressed.bind(action))
 
 func _on_close_button_pressed():
-	queue_free()
+	#queue_free()
 	close.emit()
 
 func _on_immediate_move_check_box_toggled(toggled_on):

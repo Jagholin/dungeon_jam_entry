@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://2gu4umricmwc"]
+[gd_scene load_steps=8 format=3 uid="uid://2gu4umricmwc"]
 
 [ext_resource type="Script" path="res://scripts/scenes/app_main.gd" id="1_qbgvk"]
 [ext_resource type="PackedScene" uid="uid://dkwm4iptiyfsc" path="res://scenes/game_level.tscn" id="3_0r75p"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b7a0bbxbdohnb" path="res://scenes/ui/pause_menu.tscn" id="3_u47db"]
 [ext_resource type="Theme" uid="uid://c6uahpeuppr8b" path="res://resources/theme/main_theme.tres" id="3_yb178"]
 [ext_resource type="AudioStream" uid="uid://dycj11ibip428" path="res://scenes/music/ND_Ambient_3_Eternal_Main.mp3" id="4_urws2"]
+[ext_resource type="PackedScene" uid="uid://c0c24nmp4opui" path="res://scenes/ui/settings.tscn" id="7_2qqv6"]
 
 [node name="Node3D" type="Node3D" node_paths=PackedStringArray("ui_layer", "pause_layer", "game_finished_layer") groups=["app"]]
 script = ExtResource("1_qbgvk")
@@ -72,6 +73,7 @@ theme = ExtResource("3_yb178")
 text = "Quit"
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 2
 visible = false
 
@@ -127,6 +129,14 @@ stream = ExtResource("4_urws2")
 volume_db = -8.139
 autoplay = true
 
+[node name="SettingsLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 2
+visible = false
+
+[node name="Settings" parent="SettingsLayer" instance=ExtResource("7_2qqv6")]
+unique_name_in_owner = true
+
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/StartTestLevelButton" to="." method="_on_start_test_level_button_pressed"]
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
@@ -137,3 +147,4 @@ autoplay = true
 [connection signal="settings" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_settings"]
 [connection signal="pressed" from="GameFinishedScreen/CenterContainer/VBoxContainer/gamefinished_back_button" to="." method="_on_gamefinished_back_button_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="close" from="SettingsLayer/Settings" to="." method="_on_settings_close"]

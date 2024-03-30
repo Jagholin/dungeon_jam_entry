@@ -13,6 +13,7 @@ extends Node3D
 @onready var score_container: HBoxContainer = %ScoreContainer
 @onready var score_label: Label = %ScoreLabel
 @onready var audio_player: AudioStreamPlayer = %AudioStreamPlayer
+@onready var settings_window: CanvasLayer = %SettingsLayer
 
 var is_game_running: bool = false
 
@@ -92,25 +93,22 @@ func _on_pause_menu_exit_to_menu():
 
 func _on_pause_menu_settings():
 	pause_layer.hide()
-	var settings := settings_scene.instantiate() as SettingsWindow
-	settings.close.connect(_on_settings_close)
-	add_child(settings)
+	settings_window.show()
 
 func _on_gamefinished_back_button_pressed():
 	game_finished_layer.hide()
 	ui_layer.show()
 
 func _on_settings_close():
+	settings_window.hide()
 	if is_game_running:
 		pause_layer.show()
 	else:
 		ui_layer.show()
 
 func _on_settings_button_pressed():
-	var settings := settings_scene.instantiate() as SettingsWindow
-	settings.close.connect(_on_settings_close)
 	ui_layer.hide()
-	add_child(settings)
+	settings_window.show()
 
 func _on_audio_stream_player_finished():
 	audio_player.play(18.43)
