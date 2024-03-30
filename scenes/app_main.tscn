@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/scenes/app_main.gd" id="1_qbgvk"]
 [ext_resource type="PackedScene" uid="uid://dkwm4iptiyfsc" path="res://scenes/game_level.tscn" id="2_e7qee"]
-[ext_resource type="PackedScene" uid="uid://caq0aouuikchc" path="res://scenes/test_level.tscn" id="2_hnbt3"]
+[ext_resource type="PackedScene" uid="uid://dkwm4iptiyfsc" path="res://scenes/game_level-jacklyn.tscn" id="3_0r75p"]
 [ext_resource type="PackedScene" uid="uid://b7a0bbxbdohnb" path="res://scenes/ui/pause_menu.tscn" id="3_u47db"]
 
 [node name="Node3D" type="Node3D" node_paths=PackedStringArray("ui_layer", "pause_layer") groups=["app"]]
@@ -10,7 +10,7 @@ script = ExtResource("1_qbgvk")
 ui_layer = NodePath("UILayer")
 pause_layer = NodePath("PauseMenu")
 game_level = ExtResource("2_e7qee")
-test_level = ExtResource("2_hnbt3")
+test_level = ExtResource("3_0r75p")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 2

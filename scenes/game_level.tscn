@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dkwm4iptiyfsc"]
+[gd_scene load_steps=34 format=3 uid="uid://dkwm4iptiyfsc"]
 
 [ext_resource type="Script" path="res://scripts/scenes/game_level_real.gd" id="1_1so7x"]
 [ext_resource type="Texture2D" uid="uid://kmkamoe4li3i" path="res://exports/images/panorama_image.png" id="2_r1xd1"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dyie2r5ltp3gq" path="res://scenes/objects/spikes.tscn" id="9_x2f6a"]
 [ext_resource type="PackedScene" uid="uid://cuapipgjafxq7" path="res://scenes/objects/key_placeholder.tscn" id="10_ax7sd"]
 [ext_resource type="PackedScene" uid="uid://dya78d0ij4vx2" path="res://scenes/objects/buttons.tscn" id="11_n6t2m"]
-[ext_resource type="PackedScene" uid="uid://dpx0xloewshm7" path="res://scenes/objects/obstacle_marker.tscn" id="12_em4wu"]
+[ext_resource type="PackedScene" path="res://scenes/objects/obstacle_marker.tscn" id="12_em4wu"]
 [ext_resource type="PackedScene" uid="uid://ca0smol0uwp6y" path="res://scenes/objects/gameloop_impl/simon_says.tscn" id="13_gumxf"]
 [ext_resource type="PackedScene" uid="uid://7wjwjrbjlvwf" path="res://scenes/objects/player_trigger.tscn" id="14_ldc30"]
 [ext_resource type="PackedScene" uid="uid://fqd2hfb535x0" path="res://scenes/objects/door_2.tscn" id="15_nc2v0"]
@@ -27,6 +27,8 @@
 [ext_resource type="PackedScene" uid="uid://ceoodhb2ic38g" path="res://scenes/objects/teleporter.tscn" id="25_3gkkv"]
 [ext_resource type="PackedScene" uid="uid://wnqksypssju4" path="res://scenes/objects/door_3.tscn" id="26_c307t"]
 [ext_resource type="PackedScene" uid="uid://w6t4afj1or6w" path="res://scenes/objects/enemy.tscn" id="27_bra62"]
+[ext_resource type="AudioStream" uid="uid://cote1u73ikbup" path="res://exports/sounds/CreepyDunegon.wav" id="27_xn486"]
+[ext_resource type="PackedScene" uid="uid://gsf5mdbcqvwm" path="res://scenes/objects/torch.tscn" id="28_u0osf"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_r6wnb"]
 panorama = ExtResource("2_r1xd1")
@@ -522,8 +524,13 @@ transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, -1
 [node name="lever_green_solved" parent="GameObjects" instance=ExtResource("23_nx2de")]
 transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -10, 1, 13)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer_Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_edy75")
+volume_db = -20.0
+autoplay = true
+
+[node name="AudioStreamPlayer_Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_xn486")
 autoplay = true
 
 [node name="Enemy" parent="." instance=ExtResource("27_bra62")]
@@ -537,6 +544,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1, -21)
 
 [node name="PlayerTrigger2" parent="." instance=ExtResource("14_ldc30")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, -21)
+
+[node name="torch" parent="." instance=ExtResource("28_u0osf")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12.0487, 0.975957, -4.16968)
 
 [connection signal="success" from="GameObjects/SimonSays" to="." method="_on_simon_says_success"]
 [connection signal="player_entered" from="GameObjects/PlayerTrigger" to="GameObjects/SimonSays" method="start_game"]

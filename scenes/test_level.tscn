@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://fqd2hfb535x0" path="res://scenes/objects/door_2.tscn" id="16_176es"]
 [ext_resource type="PackedScene" uid="uid://wnqksypssju4" path="res://scenes/objects/door_3.tscn" id="17_4il5a"]
 [ext_resource type="PackedScene" uid="uid://du8wabj36q6vf" path="res://scenes/objects/crate.tscn" id="18_1jfpd"]
-[ext_resource type="PackedScene" uid="uid://dpx0xloewshm7" path="res://scenes/objects/obstacle_marker.tscn" id="19_ub5qf"]
+[ext_resource type="PackedScene" path="res://scenes/objects/obstacle_marker.tscn" id="19_ub5qf"]
 [ext_resource type="PackedScene" uid="uid://cuapipgjafxq7" path="res://scenes/objects/key_placeholder.tscn" id="20_0ivyp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_es45i"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dkwm4iptiyfsc"]
+[gd_scene load_steps=26 format=3 uid="uid://dkwm4iptiyfsc"]
 
 [ext_resource type="Script" path="res://scripts/scenes/game_level_real.gd" id="1_1so7x"]
 [ext_resource type="Texture2D" uid="uid://kmkamoe4li3i" path="res://exports/images/panorama_image.png" id="2_r1xd1"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://chj0cjgi1tcy" path="res://exports/door_2.gltf" id="18_k31g5"]
 [ext_resource type="PackedScene" uid="uid://bpsl1f7lltfy7" path="res://exports/door_3.gltf" id="19_wgt4f"]
 [ext_resource type="AudioStream" uid="uid://b43xb30m5tbyq" path="res://scenes/music/ND_Ambient_3_Eternal_Main.wav" id="20_edy75"]
+[ext_resource type="PackedScene" uid="uid://gsf5mdbcqvwm" path="res://scenes/objects/torch.tscn" id="21_gof70"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_r6wnb"]
 panorama = ExtResource("2_r1xd1")
@@ -36,6 +37,7 @@ ambient_light_source = 2
 ambient_light_color = Color(0.807843, 0.807843, 0.807843, 1)
 ambient_light_energy = 0.0
 tonemap_mode = 2
+glow_intensity = 7.89
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_537gk"]
 bg_color = Color(0.654902, 0.0705882, 0.109804, 1)
@@ -404,6 +406,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 8)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("20_edy75")
+volume_db = -58.605
 autoplay = true
+
+[node name="torch" parent="." instance=ExtResource("21_gof70")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.41002, 1.56172, -4.15366)
 
 [connection signal="player_entered" from="GameObjects/PlayerTrigger" to="GameObjects/SimonSays" method="start_game"]

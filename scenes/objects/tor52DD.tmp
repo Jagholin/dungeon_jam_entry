@@ -1,0 +1,299 @@
+[gd_scene load_steps=46 format=3 uid="uid://gsf5mdbcqvwm"]
+
+[ext_resource type="PackedScene" uid="uid://ui6fqls48p3v" path="res://exports/torch.gltf" id="1_godqv"]
+[ext_resource type="Script" path="res://scripts/torch.gd" id="2_01281"]
+[ext_resource type="Texture2D" uid="uid://ctwbmdt7ap48p" path="res://exports/Dungeon2_Atlas_Albedo.png" id="2_xkwsp"]
+[ext_resource type="Texture2D" uid="uid://cx1pudrhap7t6" path="res://exports/Dungeon2_Atlas_Albedo_n.png" id="3_lm28i"]
+[ext_resource type="Texture2D" uid="uid://ck3rsoyfruly7" path="res://exports/Dungeon_Atlas_Albedo.png" id="4_bgkp3"]
+[ext_resource type="Texture2D" uid="uid://dcm4m13rnukxy" path="res://exports/Dungeon_Atlas_Albedo_n.png" id="5_s1x6l"]
+[ext_resource type="Shader" uid="uid://bevr5qwcq0wvd" path="res://scenes/shader/torch.tres" id="6_p7pno"]
+[ext_resource type="Texture2D" uid="uid://buvix6qljk3ia" path="res://exports/textures/Fire+Sparks-SpriteSheet2.png" id="6_wg1mx"]
+[ext_resource type="Texture2D" uid="uid://u51xrc81t4nn" path="res://exports/textures/Voronoi01.png" id="7_udgm7"]
+[ext_resource type="Texture2D" uid="uid://lcol7u5jy6qd" path="res://exports/textures/Flame01.png" id="8_2go32"]
+[ext_resource type="Texture2D" uid="uid://cii2tep7ujn8f" path="res://exports/textures/Flame02.png" id="9_2wss7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_whtn2"]
+albedo_texture = ExtResource("2_xkwsp")
+normal_enabled = true
+normal_texture = ExtResource("3_lm28i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vkg3"]
+albedo_texture = ExtResource("4_bgkp3")
+normal_enabled = true
+normal_texture = ExtResource("5_s1x6l")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4mhg"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4p8wk"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8u4s"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6aae"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghoju"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(0, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2khx"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(96, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktwli"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(192, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtcff"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(288, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldtd4"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(0, 192, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxg0w"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(96, 192, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdnwn"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(192, 192, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sihsh"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(288, 192, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rihe"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(0, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfx2u"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(96, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5hdo"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(192, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykh3y"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(288, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s41kg"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(0, 384, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj7ej"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(96, 384, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53am7"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(192, 384, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v534e"]
+atlas = ExtResource("6_wg1mx")
+region = Rect2(288, 384, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iedms"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4mhg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4p8wk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8u4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6aae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghoju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2khx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktwli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtcff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldtd4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxg0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdnwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sihsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rihe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfx2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5hdo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykh3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s41kg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nj7ej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53am7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v534e")
+}],
+"loop": true,
+"name": &"fire_anim",
+"speed": 10.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3a8vp"]
+render_priority = 0
+shader = ExtResource("6_p7pno")
+shader_parameter/Dissolvespeed = Vector2(0, 0.4)
+shader_parameter/DissolveAmount = 0.26
+shader_parameter/MainTex = ExtResource("8_2go32")
+shader_parameter/DissolveTextyre = ExtResource("7_udgm7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eq3vt"]
+gravity = Vector3(0, 0, 0)
+color = Color(4, 1.25, 0.6, 0.8)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7qaxm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dfvqq"]
+render_priority = 0
+shader = ExtResource("6_p7pno")
+shader_parameter/Dissolvespeed = Vector2(0, 0)
+shader_parameter/DissolveAmount = null
+shader_parameter/MainTex = ExtResource("9_2wss7")
+shader_parameter/DissolveTextyre = ExtResource("7_udgm7")
+
+[sub_resource type="Curve" id="Curve_gmtsn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0.032967), 0.0, 0.0, 0, 0, Vector2(0.267606, 1), 0.0, 0.0, 0, 0, Vector2(0.915493, 0.175824), 0.0, 0.0, 0, 0, Vector2(1, 0.032967), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_fih8p"]
+curve = SubResource("Curve_gmtsn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5iu1r"]
+emission_shape_scale = Vector3(0.2, 0.2, 0.2)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -360.0
+gravity = Vector3(0, 5, 0)
+damping_min = 0.5
+damping_max = 1.0
+scale_min = 0.75
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_fih8p")
+color = Color(4, 1.2549, 0.623529, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_cfi7f"]
+
+[sub_resource type="Gradient" id="Gradient_jucrt"]
+offsets = PackedFloat32Array(0.00540541, 0.281081, 0.594595, 0.805405)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.913725, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_133uv"]
+gradient = SubResource("Gradient_jucrt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ocirg"]
+emission_shape_scale = Vector3(0.3, 0.3, 0.3)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -360.0
+gravity = Vector3(0, 5, 0)
+damping_min = 0.5
+damping_max = 1.0
+scale_min = 1.5
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_fih8p")
+color = Color(0.282353, 0.113725, 0.00784314, 1)
+color_ramp = SubResource("GradientTexture1D_133uv")
+
+[node name="torch" instance=ExtResource("1_godqv")]
+script = ExtResource("2_01281")
+
+[node name="Torch" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_whtn2")
+surface_material_override/1 = SubResource("StandardMaterial3D_6vkg3")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="1"]
+transform = Transform3D(1.01573, 0, 0, 0, 1.02763, 0, 0, 0, 0.393325, -0.017829, 1.23913, 0.0207186)
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_iedms")
+animation = &"fire_anim"
+frame_progress = 0.935874
+
+[node name="AnimatedSprite3D2" type="AnimatedSprite3D" parent="." index="2"]
+transform = Transform3D(-0.141263, -0.00234948, 0.613411, -0.000453594, 1.02714, 0.00139133, -0.979389, -0.000136819, -0.0884766, -0.017829, 1.23913, 0.0207186)
+sorting_offset = -1.0
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_iedms")
+animation = &"fire_anim"
+
+[node name="fire-red" type="Node3D" parent="." index="3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0066998, 0.673319, 0.0388882)
+visible = false
+
+[node name="static_flame" type="GPUParticles3D" parent="fire-red" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0036, 0)
+material_override = SubResource("ShaderMaterial_3a8vp")
+amount = 1
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_eq3vt")
+draw_pass_1 = SubResource("QuadMesh_7qaxm")
+
+[node name="flames" type="GPUParticles3D" parent="fire-red" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033546, 0.618497, -0.0480725)
+material_override = SubResource("ShaderMaterial_dfvqq")
+amount = 20
+lifetime = 1.2
+process_material = SubResource("ParticleProcessMaterial_5iu1r")
+draw_pass_1 = SubResource("QuadMesh_cfi7f")
+
+[node name="smoke" type="GPUParticles3D" parent="fire-red" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033546, 0.618497, -0.0480725)
+sorting_offset = -1.0
+material_override = SubResource("ShaderMaterial_dfvqq")
+amount = 20
+lifetime = 2.5
+process_material = SubResource("ParticleProcessMaterial_ocirg")
+draw_pass_1 = SubResource("QuadMesh_cfi7f")
+
+[node name="particlesfloating" type="GPUParticles3D" parent="fire-red" index="3"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0367426, 0.895214, 0.00281039)
+light_color = Color(0.619608, 0.305882, 0.027451, 1)
+light_energy = 3.988
+light_indirect_energy = 1.76
+light_size = 0.35
+omni_range = 2718.29
+omni_shadow_mode = 0
