@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7a0bbxbdohnb"]
+[gd_scene load_steps=3 format=3 uid="uid://b7a0bbxbdohnb"]
 
 [ext_resource type="Script" path="res://scripts/scenes/pause_menu.gd" id="1_wqgpv"]
+[ext_resource type="Theme" uid="uid://c6uahpeuppr8b" path="res://resources/theme/main_theme.tres" id="2_us70a"]
 
 [node name="PauseMenu" type="CenterContainer"]
 process_mode = 3
@@ -27,18 +28,22 @@ layout_mode = 2
 
 [node name="ResumeBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_us70a")
 text = "Resume"
 
 [node name="SettingsBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_us70a")
 text = "Settings"
 
 [node name="MainMenuBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_us70a")
 text = "Exit to menu"
 
 [node name="QuitBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_us70a")
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]

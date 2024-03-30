@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0c24nmp4opui"]
+[gd_scene load_steps=3 format=3 uid="uid://c0c24nmp4opui"]
 
 [ext_resource type="Script" path="res://scripts/scenes/ui/settings.gd" id="1_ykty5"]
+[ext_resource type="Theme" uid="uid://c6uahpeuppr8b" path="res://resources/theme/main_theme.tres" id="2_ae3n5"]
 
 [node name="Settings" type="CenterContainer"]
 process_mode = 3
@@ -40,6 +41,7 @@ columns = 2
 [node name="FwdButton" type="Button" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_ae3n5")
 text = "Move Forward"
 
 [node name="FwdLabel" type="Label" parent="VBoxContainer/GridContainer"]
@@ -49,6 +51,7 @@ layout_mode = 2
 [node name="BackButton" type="Button" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_ae3n5")
 text = "Move Back"
 
 [node name="BackLabel" type="Label" parent="VBoxContainer/GridContainer"]
@@ -58,6 +61,7 @@ layout_mode = 2
 [node name="LeftButton" type="Button" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_ae3n5")
 text = "Turn left"
 
 [node name="LeftLabel" type="Label" parent="VBoxContainer/GridContainer"]
@@ -67,6 +71,7 @@ layout_mode = 2
 [node name="RightButton" type="Button" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_ae3n5")
 text = "Turn right"
 
 [node name="RightLabel" type="Label" parent="VBoxContainer/GridContainer"]
@@ -76,6 +81,7 @@ layout_mode = 2
 [node name="StrafeLeftButton" type="Button" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_ae3n5")
 text = "Strafe left"
 
 [node name="StrafeLeftLabel" type="Label" parent="VBoxContainer/GridContainer"]
@@ -85,6 +91,7 @@ layout_mode = 2
 [node name="StrafeRightButton" type="Button" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_ae3n5")
 text = "Strafe right"
 
 [node name="StrafeRightLabel" type="Label" parent="VBoxContainer/GridContainer"]
@@ -94,6 +101,7 @@ layout_mode = 2
 [node name="AttackButton" type="Button" parent="VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_ae3n5")
 text = "Attack"
 
 [node name="AttackLabel" type="Label" parent="VBoxContainer/GridContainer"]
@@ -106,6 +114,7 @@ layout_mode = 2
 
 [node name="CloseButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ae3n5")
 text = "CLOSE"
 
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/ImmediateMoveCheckBox" to="." method="_on_immediate_move_check_box_toggled"]

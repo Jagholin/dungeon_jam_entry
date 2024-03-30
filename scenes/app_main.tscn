@@ -36,6 +36,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="StartTestLevelButton" type="Button" parent="UILayer/CenterContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("3_yb178")
 text = "Start test level"
@@ -107,6 +108,7 @@ text = "1000"
 
 [node name="gamefinished_back_button" type="Button" parent="GameFinishedScreen/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_yb178")
 text = "Back to menu"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

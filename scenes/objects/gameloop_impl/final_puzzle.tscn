@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpqssbclasry1"]
+[gd_scene load_steps=3 format=3 uid="uid://cpqssbclasry1"]
 
 [ext_resource type="Script" path="res://scripts/gameloop/final_puzzle.gd" id="1_aym1n"]
+[ext_resource type="Theme" uid="uid://c6uahpeuppr8b" path="res://resources/theme/main_theme.tres" id="2_8eq22"]
 
 [node name="FinalPuzzle" type="PanelContainer"]
 offset_right = 491.0
@@ -33,7 +34,6 @@ max_lines_visible = 5
 
 [node name="InputBox" type="HBoxContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="FreqInput" type="LineEdit" parent="VBoxContainer/InputBox"]
@@ -44,6 +44,7 @@ placeholder_text = "|> enter frequency here"
 
 [node name="ConfirmBtn" type="Button" parent="VBoxContainer/InputBox"]
 layout_mode = 2
+theme = ExtResource("2_8eq22")
 text = "CONFIRM
 "
 
