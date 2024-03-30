@@ -2,8 +2,22 @@ class_name Enemy
 extends Node3D
 
 signal defeated
+signal health_changed
+signal player_is_close
+signal player_is_far
+
 @onready var movement: AIMovementComponent = $GridMovementComponent
 @export var attack_strength: int = 10
+@export var max_health: int = 100
+var _health: int:
+	set(value):
+		if value == _health:
+			return
+		_health = value
+		health_changed.emit()
+		if _health <= 0:
+			defeated.emit()
+			queue_free()
 
 func coord_to_position(c: Vector3i) -> Vector3:
 	return Vector3(c.x * 2 + 1.0, position.y, c.z * 2 + 1.0)
@@ -22,7 +36,7 @@ func dir_to_rotation(c: Vector3i) -> Vector3:
 
 func _ready():
 	# await get_tree().create_timer(1.0).timeout
-	pass
+	_health = max_health
 
 func attempt_attack():
 	var cmp := Globals.get_character_controller().get_component(GridBoundComponent.GB_COMPONENT_NAME) as GridBoundComponent
@@ -42,5 +56,10 @@ func _on_timer_timeout():
 		# print("No path :(")
 
 func on_attack():
-	defeated.emit()
-	queue_free()
+	_health -= 15
+
+func on_player_is_close():
+	player_is_close.emit()
+
+func on_player_is_far():
+	player_is_far.emit()

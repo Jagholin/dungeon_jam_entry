@@ -5,10 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://dkwm4iptiyfsc" path="res://scenes/game_level-jacklyn.tscn" id="3_0r75p"]
 [ext_resource type="PackedScene" uid="uid://b7a0bbxbdohnb" path="res://scenes/ui/pause_menu.tscn" id="3_u47db"]
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("ui_layer", "pause_layer") groups=["app"]]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("ui_layer", "pause_layer", "game_finished_layer") groups=["app"]]
 script = ExtResource("1_qbgvk")
 ui_layer = NodePath("UILayer")
 pause_layer = NodePath("PauseMenu")
+game_finished_layer = NodePath("GameFinishedScreen")
 game_level = ExtResource("2_e7qee")
 test_level = ExtResource("3_0r75p")
 
@@ -55,9 +56,53 @@ visible = false
 
 [node name="PauseMenu" parent="PauseMenu" instance=ExtResource("3_u47db")]
 
+[node name="GameFinishedScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameFinishedScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.266667, 0.278431, 0.341176, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="GameFinishedScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameFinishedScreen/CenterContainer"]
+layout_mode = 2
+
+[node name="ResultLabel" type="Label" parent="GameFinishedScreen/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Congratulations, you won the game!"
+
+[node name="ScoreContainer" type="HBoxContainer" parent="GameFinishedScreen/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="GameFinishedScreen/CenterContainer/VBoxContainer/ScoreContainer"]
+layout_mode = 2
+text = "Score:"
+
+[node name="ScoreLabel" type="Label" parent="GameFinishedScreen/CenterContainer/VBoxContainer/ScoreContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1000"
+
+[node name="gamefinished_back_button" type="Button" parent="GameFinishedScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back to menu"
+
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/StartTestLevelButton" to="." method="_on_start_test_level_button_pressed"]
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="exit_to_menu" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_exit_to_menu"]
 [connection signal="quit" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_quit"]
 [connection signal="resume" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_resume"]
+[connection signal="pressed" from="GameFinishedScreen/CenterContainer/VBoxContainer/gamefinished_back_button" to="." method="_on_gamefinished_back_button_pressed"]

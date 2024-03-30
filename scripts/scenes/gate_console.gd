@@ -30,7 +30,6 @@ func _on_static_body_3d_input_event(_camera, event, _position, _normal, _shape_i
 	if not player_tracker.player_is_close:
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		# TODO: ask the player the question
 		ui_layer.show()
 		if not turned_on:
 			puzzle_ui.start_console()

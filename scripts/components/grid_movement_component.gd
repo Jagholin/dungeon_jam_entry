@@ -109,8 +109,7 @@ func apply_drop_down(tp: Teleporter):
 	movement_state = DROPING_DOWN
 	var t := create_tween()
 	t.tween_property(target, "position:y", target.position.y - Globals.TILE_SIZE, 0.2)
-	t.tween_callback(func(): 
-		# TODO: teleport player to the given position
+	t.tween_callback(func():
 		tp.activate()
 		movement_state = IDLE_STATE)
 

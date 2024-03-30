@@ -24,7 +24,6 @@ var is_in_cooldown: bool = false
 
 func set_hurting():
 	hurting = true
-	# TODO: if the player is still here, make hurt.
 
 func reset_hurting():
 	hurting = false
