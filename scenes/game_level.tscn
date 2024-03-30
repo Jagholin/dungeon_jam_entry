@@ -19,13 +19,13 @@
 [ext_resource type="PackedScene" uid="uid://ch6382e7b8vhl" path="res://exports/door_1.gltf" id="17_uwowi"]
 [ext_resource type="PackedScene" uid="uid://chj0cjgi1tcy" path="res://exports/door_2.gltf" id="18_k31g5"]
 [ext_resource type="PackedScene" uid="uid://bpsl1f7lltfy7" path="res://exports/door_3.gltf" id="19_wgt4f"]
-[ext_resource type="AudioStream" uid="uid://b43xb30m5tbyq" path="res://scenes/music/ND_Ambient_3_Eternal_Main.wav" id="20_edy75"]
 [ext_resource type="PackedScene" uid="uid://cnjgs6w64aou5" path="res://scenes/objects/gate_console.tscn" id="21_tto1e"]
 [ext_resource type="PackedScene" uid="uid://cb3vsk6l10w6i" path="res://scenes/objects/trapdoor.tscn" id="22_ql3id"]
 [ext_resource type="PackedScene" uid="uid://cmxwf3jwkpx5q" path="res://scenes/objects/lever_2.tscn" id="23_nx2de"]
 [ext_resource type="PackedScene" uid="uid://bbjdg4b2i0rh3" path="res://scenes/objects/gameloop_impl/logic_traps.tscn" id="24_610wa"]
 [ext_resource type="PackedScene" uid="uid://ceoodhb2ic38g" path="res://scenes/objects/teleporter.tscn" id="25_3gkkv"]
 [ext_resource type="PackedScene" uid="uid://wnqksypssju4" path="res://scenes/objects/door_3.tscn" id="26_c307t"]
+[ext_resource type="AudioStream" uid="uid://rkbp4q386n6t" path="res://scenes/music/Ambient Vol3 Sad Decisions Main.mp3" id="26_nidsi"]
 [ext_resource type="PackedScene" uid="uid://w6t4afj1or6w" path="res://scenes/objects/enemy.tscn" id="27_bra62"]
 [ext_resource type="PackedScene" uid="uid://gsf5mdbcqvwm" path="res://scenes/objects/torch.tscn" id="28_nw77m"]
 
@@ -650,7 +650,7 @@ transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, -1
 transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -10, 1, 13)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("20_edy75")
+stream = ExtResource("26_nidsi")
 volume_db = -9.043
 autoplay = true
 

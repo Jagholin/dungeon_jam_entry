@@ -12,6 +12,7 @@ extends Node3D
 @onready var result_label: Label = %ResultLabel
 @onready var score_container: HBoxContainer = %ScoreContainer
 @onready var score_label: Label = %ScoreLabel
+@onready var audio_player: AudioStreamPlayer = %AudioStreamPlayer
 
 var is_game_running: bool = false
 
@@ -31,6 +32,7 @@ func _on_start_button_pressed():
 	if not game_level:
 		return
 	is_game_running = true
+	audio_player.stop()
 	var myLevel := game_level.instantiate() as Level
 	myLevel.game_over.connect(on_game_over)
 	myLevel.game_won.connect(on_game_won)
@@ -42,6 +44,7 @@ func _on_start_test_level_button_pressed():
 	if not test_level:
 		return
 	is_game_running = true
+	audio_player.stop()
 	var myLevel := test_level.instantiate() as Level
 	myLevel.game_over.connect(on_game_over)
 	myLevel.game_won.connect(on_game_won)
@@ -58,6 +61,7 @@ func _on_pause_menu_resume():
 
 func stop_game():
 	is_game_running = false
+	audio_player.play()
 	Stats.force_clear()
 	Obstacles.force_clear()
 	Grids.force_clear()
@@ -98,3 +102,6 @@ func _on_settings_button_pressed():
 	settings.close.connect(_on_settings_close)
 	ui_layer.hide()
 	add_child(settings)
+
+func _on_audio_stream_player_finished():
+	audio_player.play(18.43)

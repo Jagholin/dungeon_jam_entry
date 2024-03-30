@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://rkbp4q386n6t"
+path="res://.godot/imported/Ambient Vol3 Sad Decisions Main.mp3-f0a9e5ea9e31470b0ffed07bbdc840e6.mp3str"
+
+[deps]
+
+source_file="res://scenes/music/Ambient Vol3 Sad Decisions Main.mp3"
+dest_files=["res://.godot/imported/Ambient Vol3 Sad Decisions Main.mp3-f0a9e5ea9e31470b0ffed07bbdc840e6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
