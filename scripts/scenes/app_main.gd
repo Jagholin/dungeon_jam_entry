@@ -14,6 +14,7 @@ extends Node3D
 @onready var score_label: Label = %ScoreLabel
 @onready var audio_player: AudioStreamPlayer = %AudioStreamPlayer
 @onready var settings_window: CanvasLayer = %SettingsLayer
+@onready var credits_layer: CanvasLayer = %CreditsLayer
 
 var is_game_running: bool = false
 
@@ -27,6 +28,8 @@ func _unhandled_input(event):
 		pause_layer.show()
 
 func _on_exit_button_pressed():
+	if OS.has_feature("web"):
+		return
 	get_tree().quit()
 
 func _on_start_button_pressed():
@@ -54,6 +57,8 @@ func _on_start_test_level_button_pressed():
 	ui_layer.hide()
 
 func _on_pause_menu_quit():
+	if OS.has_feature("web"):
+		return
 	get_tree().quit()
 
 func _on_pause_menu_resume():
@@ -112,3 +117,11 @@ func _on_settings_button_pressed():
 
 func _on_audio_stream_player_finished():
 	audio_player.play(18.43)
+
+func _on_credits_button_pressed():
+	credits_layer.show()
+	ui_layer.hide()
+
+func _on_credits_close_btn_pressed():
+	credits_layer.hide()
+	ui_layer.show()

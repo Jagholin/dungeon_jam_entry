@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://2gu4umricmwc"]
+[gd_scene load_steps=9 format=3 uid="uid://2gu4umricmwc"]
 
 [ext_resource type="Script" path="res://scripts/scenes/app_main.gd" id="1_qbgvk"]
 [ext_resource type="PackedScene" uid="uid://dkwm4iptiyfsc" path="res://scenes/game_level.tscn" id="3_0r75p"]
 [ext_resource type="Texture2D" uid="uid://fxet17kowvfu" path="res://exports/images/bkg.png" id="3_oib3a"]
 [ext_resource type="PackedScene" uid="uid://b7a0bbxbdohnb" path="res://scenes/ui/pause_menu.tscn" id="3_u47db"]
 [ext_resource type="Theme" uid="uid://c6uahpeuppr8b" path="res://resources/theme/main_theme.tres" id="3_yb178"]
+[ext_resource type="Texture2D" uid="uid://c3rnxfgqho6b" path="res://exports/images/title.png" id="4_kpmya"]
 [ext_resource type="AudioStream" uid="uid://dycj11ibip428" path="res://scenes/music/ND_Ambient_3_Eternal_Main.mp3" id="4_urws2"]
 [ext_resource type="PackedScene" uid="uid://c0c24nmp4opui" path="res://scenes/ui/settings.tscn" id="7_2qqv6"]
 
@@ -35,6 +36,17 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_oib3a")
 expand_mode = 2
+
+[node name="Title" type="TextureRect" parent="UILayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 70.0
+offset_right = 300.0
+offset_bottom = 161.0
+grow_horizontal = 2
+texture = ExtResource("4_kpmya")
 
 [node name="CenterContainer" type="CenterContainer" parent="UILayer"]
 anchors_preset = 15
@@ -137,9 +149,119 @@ visible = false
 [node name="Settings" parent="SettingsLayer" instance=ExtResource("7_2qqv6")]
 unique_name_in_owner = true
 
+[node name="CreditsLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 2
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 35
+
+[node name="PanelContainer" type="PanelContainer" parent="CreditsLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsLayer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsLayer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CreditsLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CreditsLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "These are people that made this happen
+
+# 3rd party assets:
+
+textures from https://3dtextures.me/, under CC0 license(public domain).
+
+textures from https://oleekconder.itch.io/ by Oleksandr Martynenko, terms of license:
+> You CAN use it for commercial purposes.
+> You CAN NOT resell it, obviously. [https://itch.io/post/8388273] 
+
+key icon from game-icons.net, https://game-icons.net/1x1/lorc/key.html
+by Lorc under CC BY 3.0 license
+
+footsteps sound from https://pixabay.com/sound-effects/concrete-footsteps-1-6265/ by Pixabay, distributed under pixabay content license
+
+UI elements from https://mounirtohami.itch.io/pixel-art-gui-elements, free to use for any purpose
+
+Other assets from:
+
+https://freesound.org/people/pagancow/sounds/15419/
+Creative Commons 0
+
+https://freesound.org/people/PNMCarrieRailfan/sounds/681486/
+Attribution NonCommercial 4.0
+
+https://freesound.org/people/bennynz/sounds/580442/
+Creative Commons 0
+
+https://freesound.org/people/Mrthenoronha/sounds/405417/
+Creative Commons 0
+
+https://ragnapixel.itch.io/particle-fx
+LICENCE: Creative Commons Attribution v4.0 International
+
+https://freesound.org/people/JamesFarrell_97/sounds/566251/
+Attribution NonCommercial 3.0
+
+https://freesound.org/people/IanStarGem/sounds/278204/
+Creative Commons 0
+
+https://freesound.org/people/phlair/sounds/388340/
+Attribution 3.0
+
+https://freesound.org/people/mediatheksuche/sounds/623712/
+Creative Commons 0
+
+https://freesound.org/people/Aris621/sounds/478145/
+Attribution 4.0
+
+https://quaternius.com/packs/cubeworldkit.html
+Creative Commons 0
+
+https://freesound.org/people/BehanSean/sounds/422434/
+Creative Commons 0
+
+https://ovanisound.com/"
+fit_content = true
+
+[node name="CreditsCloseBtn" type="Button" parent="CreditsLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_yb178")
+text = "Close"
+
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/StartTestLevelButton" to="." method="_on_start_test_level_button_pressed"]
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="exit_to_menu" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_exit_to_menu"]
 [connection signal="quit" from="PauseMenu/PauseMenu" to="." method="_on_pause_menu_quit"]
@@ -148,3 +270,4 @@ unique_name_in_owner = true
 [connection signal="pressed" from="GameFinishedScreen/CenterContainer/VBoxContainer/gamefinished_back_button" to="." method="_on_gamefinished_back_button_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
 [connection signal="close" from="SettingsLayer/Settings" to="." method="_on_settings_close"]
+[connection signal="pressed" from="CreditsLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/CreditsCloseBtn" to="." method="_on_credits_close_btn_pressed"]

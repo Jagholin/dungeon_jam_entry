@@ -35,4 +35,5 @@ layout_mode = 2
 solution = 158595
 
 [connection signal="input_event" from="console/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="gui_input" from="UILayer/CenterContainer" to="." method="_on_center_container_gui_input"]
 [connection signal="solution_correct" from="UILayer/CenterContainer/FinalPuzzle" to="." method="_on_final_puzzle_solution_correct"]

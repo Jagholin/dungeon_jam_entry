@@ -14,9 +14,36 @@ extends Level
 @onready var time_bar: ProgressBar = %TimeBar
 @onready var time_label: Label = %TimeRemaining
 @onready var text_note_container: PanelContainer = %TextNoteContainer
+@onready var text_note_label: RichTextLabel = %TextNoteLabel
 
+@onready var character: CharacterController = %Character
 @onready var gate_console: GateConsole = %gate_console
 @onready var bkg_audio: AudioStreamPlayer = $AudioStreamPlayer
+
+const text_note_1: String = "Just a second ago, you stepped onto a teleporter and found yourself in a strange place.
+Instead of the familiar surroundings, you are now in a dark and mysterious world.
+
+Based on your knowledge about dimensional travel, you know that worlds like this usually do not last long. Sooner or later, they will collapse and you will be trapped in the void forever.
+You have no idea how you got here, but you know that you need to get out of here as soon as possible.
+
+And what is this? A gate console? You need to activate it to get out of here!"
+
+const text_note_2: String = "Some hints and help:
+
+Standard button mapping: WASD for moving as well as Q and E to rotate left and right
+[Space] to attack(hits directly in adjacent square in front of you)
+The mapping can be changed in the settings menu.
+
+To receive clues to activate the gate console you will need to solve puzzles that you can find scattered in this world.
+
+Solving puzzles will restore your health and add extra time.
+
+There is no game saves, if you lose you will have to start from the beginning.
+
+But all clues and solutions are fixed from the start, so if you remember them from the previous runs, you don't have to re-do them!"
+
+const text_note_3: String = "What is this? A strange creature in this uninhabited world? And what was it doing here of all places?
+"
 
 var seconds_passed: float = 0.0
 var previous_phase: int = 0
@@ -36,22 +63,27 @@ var red_decoded: bool
 var green_decoded: bool
 var blue_decoded: bool
 
+var hint_note_shown: bool = false
+
 var enemy: Enemy
 
 func _input(event):
 	super._input(event)
 	if event.is_action_pressed("info"):
-		text_note_container.show()
+		show_text_note(text_note_2)
 
 func _ready():
 	super._ready()
 	enemy_bar.hide()
 	enemy_title.hide()
 	time_bar.max_value = start_time
+	text_note_label.text = text_note_1
 
 	NotableObjects.on_new_object_registered.connect(_on_enemy_moved_or_spawned)
 
 func _process(delta):
+	if text_note_container.is_visible():
+		return
 	#super._process(delta)
 	seconds_passed += delta
 
@@ -99,6 +131,7 @@ func _on_enemy_defeated():
 	show_note("Blue component: 322764")
 	if blue_decoded:
 		return
+	show_text_note(text_note_3)
 	start_time += 60
 	time_bar.max_value = start_time
 	Stats.health += 20
@@ -150,7 +183,22 @@ func _on_trigger_win_condition_player_entered():
 		game_won.emit(score)
 
 func _on_text_note_close_btn_pressed():
-	text_note_container.hide()
+	if not hint_note_shown:
+		text_note_label.text = text_note_2
+		hint_note_shown = true
+	else:
+		text_note_container.hide()
 
 func _on_audio_stream_player_finished():
 	bkg_audio.play()
+
+func show_text_note(text: String):
+	text_note_label.text = text
+	text_note_container.show()
+
+
+func _on_gate_console_console_ui_opened():
+	character.ignore_movement = true
+
+func _on_gate_console_console_ui_closed():
+	character.ignore_movement = false

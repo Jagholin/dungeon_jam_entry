@@ -279,6 +279,7 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Character" parent="." instance=ExtResource("5_v2rrp")]
+unique_name_in_owner = true
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3, 0.025, 1)
 
 [node name="GameObjects" type="Node3D" parent="."]
@@ -676,6 +677,8 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -19, 0
 [connection signal="pressed" from="HUDLayer/MarginContainer/HUD/TextNoteContainer/MarginContainer/VBoxContainer/TextNoteCloseBtn" to="." method="_on_text_note_close_btn_pressed"]
 [connection signal="success" from="GameObjects/SimonSays" to="." method="_on_simon_says_success"]
 [connection signal="player_entered" from="GameObjects/PlayerTrigger" to="GameObjects/SimonSays" method="start_game"]
+[connection signal="console_ui_closed" from="GameObjects/gate_console" to="." method="_on_gate_console_console_ui_closed"]
+[connection signal="console_ui_opened" from="GameObjects/gate_console" to="." method="_on_gate_console_console_ui_opened"]
 [connection signal="player_entered" from="GameObjects/red_entered_trigger" to="." method="_on_red_entered_trigger_player_entered"]
 [connection signal="player_entered" from="GameObjects/green_entered_trigger" to="." method="_on_green_entered_trigger_player_entered"]
 [connection signal="switched_on" from="GameObjects/lever6" to="GameObjects/door_opened_bylever" method="unlock_door"]

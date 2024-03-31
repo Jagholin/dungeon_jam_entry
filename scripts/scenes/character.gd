@@ -28,6 +28,8 @@ var movement_functions := {
 }
 var command_queue: Array[MovementCommand] = []
 
+var ignore_movement: bool = false
+
 const KEY_ITEM_NAME := "KEY"
 var inventory = []
 
@@ -46,7 +48,9 @@ func dir_to_rotation(c: Vector3i) -> Vector3:
 	push_error("Unexpected direction value, {0}".format([c]))
 	return Vector3(0, 0, 0)
 	
-func _input(_event):
+func _unhandled_input(_event):
+	if ignore_movement:
+		return
 	# limit command queue to 1 command
 	if command_queue.size() >= 1:
 		return
@@ -56,6 +60,8 @@ func _input(_event):
 	
 func _process(_delta):
 	if grid_movement.movement_state != GridMovementComponent.IDLE_STATE:
+		return
+	if ignore_movement:
 		return
 	var next_command: MovementCommand
 	if not Grids.immediate_movement and command_queue.is_empty():
