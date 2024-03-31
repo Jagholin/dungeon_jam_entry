@@ -6,13 +6,16 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xn5h4"]
 albedo_texture = ExtResource("3_mm2kd")
+texture_filter = 0
 
 [node name="enemy_black" instance=ExtResource("1_y3bn2")]
 script = ExtResource("2_jdovp")
 
 [node name="Skeleton3D" parent="EnemyArmature" index="0"]
 bones/1/rotation = Quaternion(1, 0, -7.54979e-08, -1.54651e-07)
+bones/2/rotation = Quaternion(-7.73255e-08, 3.17865e-08, -2.45791e-15, 1)
 bones/3/rotation = Quaternion(1, 0, -7.54979e-08, -1.54651e-07)
+bones/4/rotation = Quaternion(-7.73255e-08, 3.17865e-08, -2.45791e-15, 1)
 bones/5/position = Vector3(-1.35591e-20, 1.462, 1.74595e-10)
 bones/5/rotation = Quaternion(0, 1.19209e-07, 0, 1)
 bones/6/position = Vector3(-2.13019e-07, 1.39334, 0.91021)
