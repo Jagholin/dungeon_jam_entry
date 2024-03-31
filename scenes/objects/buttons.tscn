@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dya78d0ij4vx2"]
+[gd_scene load_steps=6 format=3 uid="uid://dya78d0ij4vx2"]
 
 [ext_resource type="PackedScene" uid="uid://4n3xtkidkvtr" path="res://exports/buttons.gltf" id="1_cxefr"]
 [ext_resource type="Script" path="res://scripts/scenes/buttons.gd" id="2_n0emq"]
 [ext_resource type="Script" path="res://scripts/components/player_tracker.gd" id="3_wmr88"]
 [ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="4_4orxp"]
+[ext_resource type="AudioStream" uid="uid://bu6bpfww8lg8l" path="res://exports/sounds/Button_click.ogg" id="5_crach"]
 
 [node name="buttons" node_paths=PackedStringArray("player_tracker", "button_meshes", "highlight_spotlight") instance=ExtResource("1_cxefr")]
 script = ExtResource("2_n0emq")
@@ -55,3 +56,8 @@ spot_range = 3.12524
 spot_attenuation = 0.68302
 spot_angle = 28.521
 spot_angle_attenuation = 0.594603
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="13"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.448685)
+stream = ExtResource("5_crach")

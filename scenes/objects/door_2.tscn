@@ -151,6 +151,7 @@ states/open_door/position = Vector2(476, 57)
 transitions = ["Start", "open_door", SubResource("AnimationNodeStateMachineTransition_0fqtv"), "open_door", "close_door", SubResource("AnimationNodeStateMachineTransition_ay3m2"), "close_door", "open_door", SubResource("AnimationNodeStateMachineTransition_771u0")]
 
 [node name="door_2" node_paths=PackedStringArray("grid_bound", "player_tracker", "animation_tree", "close_timer") instance=ExtResource("1_518g2")]
+transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("2_0vfir")
 grid_bound = NodePath("GridBoundComponent")
 player_tracker = NodePath("PlayerTrackerComponent")

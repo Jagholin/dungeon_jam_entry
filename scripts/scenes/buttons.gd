@@ -27,6 +27,8 @@ signal highlight_finished()
 @export var button_meshes: Array[MeshInstance3D]
 @export var highlight_spotlight: SpotLight3D
 
+@onready var audio_player: AudioStreamPlayer3D = %AudioStreamPlayer3D
+
 var highlight_on := false
 
 func _ready():
@@ -50,6 +52,7 @@ func _on_button_input(_camera: Node, event: InputEvent, _position: Vector3, _nor
 	if event is InputEventMouseButton:
 		var mouse_event := event as InputEventMouseButton
 		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.pressed:
+			audio_player.play()
 			pressed.emit(value)
 
 func highlight():

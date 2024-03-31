@@ -10,7 +10,11 @@ config_version=5
 
 [application]
 
-config/name="dungeon_jam_entry"
+config/name="VoidPlanE"
+config/description="An entry to the dungeon crawler game jam, 2024
+
+A game about a traveler lost in the void"
+config/version="1.0"
 run/main_scene="res://scenes/app_main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"

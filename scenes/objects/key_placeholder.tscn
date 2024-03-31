@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuapipgjafxq7"]
+[gd_scene load_steps=11 format=3 uid="uid://cuapipgjafxq7"]
 
 [ext_resource type="Script" path="res://scripts/scenes/key_placeholder.gd" id="2_svg2w"]
 [ext_resource type="Script" path="res://scripts/components/grid_bound.gd" id="3_rjii8"]
 [ext_resource type="Script" path="res://scripts/components/player_tracker.gd" id="4_yimcf"]
 [ext_resource type="Texture2D" uid="uid://ctwbmdt7ap48p" path="res://exports/Dungeon2_Atlas_Albedo.png" id="5_pgpid"]
 [ext_resource type="PackedScene" uid="uid://ccnuoxs23ntro" path="res://scenes/objects/marker3d.tscn" id="5_yw58q"]
+[ext_resource type="AudioStream" uid="uid://dqk5t04hs0yna" path="res://exports/sounds/Key_pickup.mp3" id="6_hwe7a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iyhw6"]
 resource_name = "Material"
@@ -74,4 +75,11 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="key/key/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_e7c5y")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.691838)
+stream = ExtResource("6_hwe7a")
+bus = &"Environment"
+
 [connection signal="input_event" from="key/key/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
