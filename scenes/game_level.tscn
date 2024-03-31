@@ -51,6 +51,7 @@ bg_color = Color(0.654902, 0.0705882, 0.109804, 1)
 
 [node name="GameLevel" type="Node3D" node_paths=PackedStringArray("spikes_a", "spikes_b", "spikes_c", "grid_map")]
 script = ExtResource("1_1so7x")
+start_time = 240
 spikes_a = [NodePath("GameObjects/spikes_a_1"), NodePath("GameObjects/spikes_a_2"), NodePath("GameObjects/spikes_a_3"), NodePath("GameObjects/spikes_a_4"), NodePath("GameObjects/spikes_a_5"), NodePath("GameObjects/spikes_a_6")]
 spikes_b = [NodePath("GameObjects/spikes_b_1"), NodePath("GameObjects/spikes_b_2"), NodePath("GameObjects/spikes_b_3"), NodePath("GameObjects/spikes_b_4"), NodePath("GameObjects/spikes_b_5"), NodePath("GameObjects/spikes_b_6")]
 spikes_c = [NodePath("GameObjects/spikes_c_1"), NodePath("GameObjects/spikes_c_2"), NodePath("GameObjects/spikes_c_3"), NodePath("GameObjects/spikes_c_4")]

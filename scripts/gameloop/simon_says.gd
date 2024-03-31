@@ -18,6 +18,7 @@ var current_index: int = 0
 var current_remembered_index: int = 0
 
 var game_is_active: bool = false
+var was_solved: bool = false
 
 func _ready():
 	for button in buttons:
@@ -25,6 +26,8 @@ func _ready():
 			button.pressed.connect(button_pressed)
 
 func start_game():
+	if was_solved:
+		return
 	if game_is_active:
 		return
 	game_is_active = true
@@ -41,6 +44,7 @@ func button_pressed(value: int):
 			current_index = 0
 			current_remembered_index = 0
 			game_is_active = false
+			was_solved = true
 			success.emit()
 			return
 		if current_index > current_remembered_index:
@@ -55,6 +59,7 @@ func button_pressed(value: int):
 func run_highlight_sequence():
 	var chr := Globals.get_character_controller()
 	chr.look_through(overview_camera, highlight_finished)
+	chr.enable_spotlight = false
 
 	for i in range(current_remembered_index + 1):
 		buttons[secret[i]].highlight()
@@ -64,4 +69,5 @@ func run_highlight_sequence():
 		highlight_timer.start()
 		await highlight_timer.timeout
 	
+	chr.enable_spotlight = true
 	highlight_finished.emit()

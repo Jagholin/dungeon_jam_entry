@@ -4,6 +4,7 @@ extends Node3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var step_sound_player: AudioStreamPlayer = $StepSoundsPlayer
 @onready var grid_movement: GridMovementComponent = $GridMovementComponent
+@onready var spotlight: SpotLight3D = $SpotLight3D
 
 @export_group("Internals")
 @export var camera_swap_timer: Timer
@@ -29,6 +30,13 @@ var movement_functions := {
 var command_queue: Array[MovementCommand] = []
 
 var ignore_movement: bool = false
+
+var enable_spotlight: bool = true:
+	set(value):
+		if value == enable_spotlight:
+			return
+		enable_spotlight = value
+		spotlight.visible = value
 
 const KEY_ITEM_NAME := "KEY"
 var inventory = []
