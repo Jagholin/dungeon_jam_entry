@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/components/ai_movement.gd" id="2_482be"]
 [ext_resource type="Script" path="res://scripts/components/notable_object.gd" id="3_kchnf"]
 [ext_resource type="Script" path="res://scripts/components/player_tracker.gd" id="4_qoaw3"]
-[ext_resource type="PackedScene" uid="uid://drq7hgvxscaqd" path="res://scenes/objects/raw_enemy_black.tscn" id="5_och8s"]
+[ext_resource type="PackedScene" uid="uid://c0e7uc18embyj" path="res://scenes/objects/enemy_black.tscn" id="5_enqqr"]
 
 [sub_resource type="Animation" id="Animation_6pqf4"]
 length = 0.001
@@ -120,8 +120,8 @@ script = ExtResource("4_qoaw3")
 grid_bound = NodePath("../GridMovementComponent")
 close_distance = 5
 
-[node name="enemy_black" parent="." instance=ExtResource("5_och8s")]
-transform = Transform3D(-0.4, 0, 6.03983e-08, 0, 0.4, 0, -6.03983e-08, 0, -0.4, 0, 0, 0)
+[node name="enemy_black" parent="." instance=ExtResource("5_enqqr")]
+transform = Transform3D(-0.4, 0, 3.49691e-08, 0, 0.4, 0, -3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [connection signal="movement_finished" from="GridMovementComponent" to="." method="_on_grid_movement_component_movement_finished"]
 [connection signal="movement_started" from="GridMovementComponent" to="." method="_on_grid_movement_component_movement_started"]

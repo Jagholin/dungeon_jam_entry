@@ -1,6 +1,6 @@
 {
 	"asset":{
-		"generator":"Khronos glTF Blender I/O v4.0.44",
+		"generator":"Khronos glTF Blender I/O v4.1.62",
 		"version":"2.0"
 	},
 	"extensionsUsed":[
@@ -3086,6 +3086,9 @@
 			},
 			"name":"Atlas.001",
 			"pbrMetallicRoughness":{
+				"baseColorTexture":{
+					"index":0
+				},
 				"metallicFactor":0
 			}
 		}
@@ -3106,6 +3109,19 @@
 					"material":0
 				}
 			]
+		}
+	],
+	"textures":[
+		{
+			"sampler":0,
+			"source":0
+		}
+	],
+	"images":[
+		{
+			"mimeType":"image/png",
+			"name":"Dungeon2_Atlas_Albedo.png.001",
+			"uri":"../Dungeon2_Atlas_Albedo.png"
 		}
 	],
 	"skins":[
@@ -5967,6 +5983,12 @@
 			"buffer":0,
 			"byteLength":24,
 			"byteOffset":209088
+		}
+	],
+	"samplers":[
+		{
+			"magFilter":9728,
+			"minFilter":9984
 		}
 	],
 	"buffers":[
